@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import cookies from 'universal-cookie';
+import Button from './button';
 
 
 export default class Dashboard extends Component {
 
-    constructor(props) {
-
-        super(props);
-        this.cookie = new cookies();
-    }
-
     render() {
 
-        return <div><a href="#" onClick={this.props.signOut}>signout</a></div>
+        return (
+            <div>
+                <Button text='Signout' color='#7ad5c9' height='50px' width='80px' onClick={this.props.signOut} />
+            </div>
+        );
     }
 
 }

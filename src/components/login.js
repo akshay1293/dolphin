@@ -43,11 +43,9 @@ class Login extends Component {
             'width': 200,
             'onsuccess': this.onSignIn.bind(this),
         });
-        console.log('1 ' + this.state.isLoggedIn);
     }
 
     render() {
-        console.log("render " + this.state.isLoggedIn);
         if (this.state.isLoggedIn) {
 
             return <Dashboard signOut={this.signOutHandler.bind(this)} />
@@ -76,8 +74,6 @@ class Login extends Component {
     }
 
     signOutHandler() {
-
-        console.log('signout');
         this.cookie.remove('name');
         this.setState({ isLoggedIn: false, });
         window.location.reload();
