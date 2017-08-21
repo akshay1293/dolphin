@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import Button from './button';
+import Header from './header/header';
+import '../App.css';
 
 
 export default class Dashboard extends Component {
     render() {
         return (
-            <div>
-                <Button text='SignOut' color='#7ad5c9' height='50px' width='80px' onClick={this.props.signOut} />
+            <div className='dashboard'>
+                <div className='header'>
+                    <Header user='Akshay Aggarwal' onClick={this.props.signOut} />
+                </div>
+                <div className='content'>
+
+                </div>
             </div>
         );
     }

@@ -1,0 +1,143 @@
+import React, { Component } from 'react';
+//import logo from '../../assets/dolphin-logo.png';
+
+export default class Header extends Component {
+
+    constructor(props) {
+
+        super(props);
+        this.state = {
+
+            toggle: false
+        }
+    }
+
+    render() {
+
+        const style = {
+            container: {
+                backgroundColor: '#EAF0F4',
+                padding: '10px 15px',
+                border: '1px solid #CCC7C7',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end',
+            },
+            profile: {
+
+                fontSize: '13px',
+
+
+            },
+            userImage: {
+
+                height: '25px',
+                width: '25px',
+                borderRadius: '50%',
+                backgroundColor: 'gray',
+                border: '1px solid black',
+            },
+            test: {
+                visibility: (this.state.toggle) ? 'visible' : 'hidden',
+                position: 'absolute',
+                top: '39px',
+                bottom: 0,
+                right: 0,
+                left: 0
+            },
+            popupInfo: {
+                position: 'absolute',
+                top: '5px',
+                right: '27px',
+                backgroundColor: '#F5F9F9',
+                border: '1px solid #CCC7C7',
+                borderRadius: '16px 0px 16px 16px',
+                padding: '5px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+            },
+            profileImage: {
+                flex: 3,
+                height: '100px',
+                width: '100px',
+                borderRadius: '50%',
+                border: '1px solid #CCC7C7',
+                overflow: 'hidden'
+            },
+            username: {
+                flex: 7,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                padding: '10px',
+                textAlign: 'center',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                color: 'gray',
+                letterSpacing: '1px',
+            },
+            button: {
+                borderTop: '1px solid #CCC7C7',
+                width: '100%',
+                textAlign: 'center',
+                color: 'gray',
+                padding: '10px',
+
+            },
+            link: {
+
+                textDecoration: 'none',
+                color: '#5E6161',
+            }
+
+        }
+
+
+        return (
+
+            <div style={style.container}>
+                <div style={style.profile} onClick={this.togglePopup.bind(this)}>
+                    <i className="fa fa-bars" style={{ color: '#575858', fontSize: '16px', paddingRight: '10px' }}></i>
+                </div>
+
+                <div style={style.test}>
+                    <div style={style.popupInfo}>
+                        <div style={style.profileImage}>
+                            <img src={''} alt='Not found' height='100px' width='100px' />
+                        </div>
+                        <div style={style.username}>
+                            <p>Akshay Aggarwal</p>
+                        </div>
+                        <div style={style.button}>
+                            <a href="/#root" style={style.link}>Settings</a>
+                        </div>
+                        <div style={style.button}>
+                            <a href="/#root" style={style.link} onClick={this.props.onClick}>SignOut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    togglePopup() {
+
+        if (this.state.toggle) {
+
+            this.setState({
+
+                toggle: false,
+            })
+        } else {
+
+            this.setState({
+
+                toggle: true,
+            })
+        }
+    }
+}
