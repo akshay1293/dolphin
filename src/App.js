@@ -41,10 +41,10 @@ class App extends Component {
   onSignIn(user) {
     console.log(user);
 
-    // this.setState({
+    this.setState({
 
-    //   isLoggedIn: true,
-    // })
+      isLoggedIn: true,
+    })
 
     // var auth2 = window.gapi.auth2.getAuthInstance();
     // auth2.signOut().then(function () {
