@@ -20,7 +20,7 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        console.log('component will mount');
+        //console.log('component will mount');
         if (this.cookie.get('name') !== undefined) {
 
             this.setState({
@@ -66,10 +66,10 @@ class Login extends Component {
             isLoggedIn: true,
         });
 
-        console.log("user signing out")
+        //console.log("user signing out")
         var auth2 = window.gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            console.log('User signed out.');
+            //console.log('User signed out.');
         });
     }
 
