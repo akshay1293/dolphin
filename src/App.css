@@ -1,3 +1,10 @@
+*{
+
+    padding: 0;
+    margin:0;
+    font-family: sans-serif;
+}
+
 .container {
     align-items: center;
     background: #dd8d77;
@@ -8,4 +15,14 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.header{
+
+    flex: 0.5;
+}
+
+.content{
+
+    flex: 9.5;
 }
