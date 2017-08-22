@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-// import Button from './button';
+
 import SideBar from './sideBar.js';
+import Header from './header/header';
+import '../App.css';
+import cookies from 'universal-cookie';
 
 export default class Dashboard extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.cookie = new cookies();
+    }
     render() {
         return (
             <div style={dolphin.container}>
@@ -10,7 +20,11 @@ export default class Dashboard extends Component {
                     <SideBar />
                 </div>
                 <div style={dolphin.content}>
-                    {/* <Button text='SignOut' width='80px' onClick={this.props.signOut} /> */}
+                    <div className='header'>
+                        <Header onClick={this.props.signOut} />
+                    </div>
+                    <div className='content'>
+                    </div>
                 </div>
             </div>
         );
@@ -31,6 +45,8 @@ const dolphin = {
         flex: '0.18'
     },
     content: {
-        flex: '0.82'
+        display: 'flex',
+        flex: '0.82',
+        flexDirection: 'column'
     }
 };
