@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from './button';
+// import Button from './button';
 import SideBar from './sideBar.js';
 
 export default class Dashboard extends Component {
@@ -10,7 +10,7 @@ export default class Dashboard extends Component {
                     <SideBar />
                 </div>
                 <div style={dolphin.content}>
-                    <Button text='SignOut' width='80px' onClick={this.props.signOut} />
+                    {/* <Button text='SignOut' width='80px' onClick={this.props.signOut} /> */}
                 </div>
             </div>
         );
