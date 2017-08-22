@@ -96,6 +96,7 @@ export default class Header extends Component {
         return (
 
             <div style={style.container}>
+                <div style={{ marginRight: 'auto' }}><p>Dashboard</p></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
                     <i className="fa fa-bars" style={{ color: '#575858', fontSize: '16px', paddingRight: '10px' }}></i>
                 </div>
