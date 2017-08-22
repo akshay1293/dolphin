@@ -14,7 +14,7 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        console.log('component will mount');
+        //console.log('component will mount');
         if (this.cookie.get('dolphinUser') !== undefined) {
 
             this.setState({
