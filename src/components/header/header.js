@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from '../../assets/dolphin-logo.png';
+import cookies from 'universal-cookie';
 
 export default class Header extends Component {
 
@@ -8,12 +8,13 @@ export default class Header extends Component {
         super(props);
         this.state = {
 
-            toggle: false
+            toggle: false,
         }
+        this.cookie = new cookies();
     }
 
     render() {
-
+        this.userData = this.cookie.get('dolphinUser');
         const style = {
             container: {
                 backgroundColor: '#EAF0F4',
@@ -25,10 +26,7 @@ export default class Header extends Component {
                 alignItems: 'flex-end',
             },
             profile: {
-
                 fontSize: '13px',
-
-
             },
             userImage: {
 
@@ -38,7 +36,7 @@ export default class Header extends Component {
                 backgroundColor: 'gray',
                 border: '1px solid black',
             },
-            test: {
+            popupContainer: {
                 visibility: (this.state.toggle) ? 'visible' : 'hidden',
                 position: 'absolute',
                 top: '39px',
@@ -53,7 +51,7 @@ export default class Header extends Component {
                 backgroundColor: '#F5F9F9',
                 border: '1px solid #CCC7C7',
                 borderRadius: '16px 0px 16px 16px',
-                padding: '5px 20px',
+                padding: '8px 20px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -95,28 +93,22 @@ export default class Header extends Component {
             }
 
         }
-
-
         return (
 
             <div style={style.container}>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
                     <i className="fa fa-bars" style={{ color: '#575858', fontSize: '16px', paddingRight: '10px' }}></i>
                 </div>
-
-                <div style={style.test}>
+                <div style={style.popupContainer}>
                     <div style={style.popupInfo}>
                         <div style={style.profileImage}>
-                            <img src={''} alt='Not found' height='100px' width='100px' />
+                            <img src={this.userData == undefined ? '' : this.userData.Paa} alt='Not found' height='100px' width='100px' />
                         </div>
                         <div style={style.username}>
-                            <p>Akshay Aggarwal</p>
+                            <p>{this.userData == undefined ? '' : this.userData.ig} </p>
                         </div>
                         <div style={style.button}>
-                            <a href="/#root" style={style.link}>Settings</a>
-                        </div>
-                        <div style={style.button}>
-                            <a href="/#root" style={style.link} onClick={this.props.onClick}>SignOut</a>
+                            <a href="#root" style={style.link} onClick={this.props.onClick}>SignOut</a>
                         </div>
                     </div>
                 </div>
