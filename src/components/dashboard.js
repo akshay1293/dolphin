@@ -24,6 +24,7 @@ export default class Dashboard extends Component {
                         <Header onClick={this.props.signOut} />
                     </div>
                     <div className='content'>
+                        <h1>hello world</h1>
                     </div>
                 </div>
             </div>
@@ -42,11 +43,11 @@ const dolphin = {
     },
     sidebar: {
         display: 'flex',
-        flex: '0.18'
+        flex: '0.15'
     },
     content: {
         display: 'flex',
-        flex: '0.82',
+        flex: '0.85',
         flexDirection: 'column'
     }
 };
