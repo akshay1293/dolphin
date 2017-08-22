@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import Button from './button';
+import Header from './header/header';
+import '../App.css';
+import cookies from 'universal-cookie';
 
 
 export default class Dashboard extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.cookie = new cookies();
+    }
     render() {
         return (
-            <div>
-                <Button text='SignOut' color='#7ad5c9' height='50px' width='80px' onClick={this.props.signOut} />
+            <div className='dashboard'>
+                <div className='header'>
+                    <Header onClick={this.props.signOut} />
+                </div>
+                <div className='content'>
+
+                </div>
             </div>
         );
     }
