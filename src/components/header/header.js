@@ -103,10 +103,10 @@ export default class Header extends Component {
                 <div style={style.popupContainer}>
                     <div style={style.popupInfo}>
                         <div style={style.profileImage}>
-                            <img src={this.userData == undefined ? '' : this.userData.Paa} alt='Not found' height='100px' width='100px' />
+                            <img src={this.userData === undefined ? '' : this.userData.Paa} alt='Not found' height='100px' width='100px' />
                         </div>
                         <div style={style.username}>
-                            <p>{this.userData == undefined ? '' : this.userData.ig} </p>
+                            <p>{this.userData === undefined ? '' : this.userData.ig} </p>
                         </div>
                         <div style={style.button}>
                             <a href="#root" style={style.link} onClick={this.props.onClick}>SignOut</a>
