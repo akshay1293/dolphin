@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import SideBar from './sideBar.js';
 import Header from './header/header';
+import DirHead from './header/dirHead';
 import '../App.css';
 import cookies from 'universal-cookie';
 
@@ -22,9 +23,9 @@ export default class Dashboard extends Component {
                 <div style={dolphin.content}>
                     <div className='header'>
                         <Header onClick={this.props.signOut} />
+                        <DirHead />
                     </div>
                     <div className='content'>
-                        <h1>hello world</h1>
                     </div>
                 </div>
             </div>
