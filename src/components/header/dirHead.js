@@ -6,7 +6,9 @@ class DirHead extends React.Component {
     constructor() {
         super();
         this.state = {
-            folderName: 'java'
+            folderName: 'java',
+            toggle: 'fa fa-toggle-off',
+            tab: 'Private',
         }
     }
     render() {
@@ -15,8 +17,9 @@ class DirHead extends React.Component {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <span style={dolphin.foldername}>{this.state.folderName}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <span>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span  style={{ display: 'flex', flexDirection: 'row'}}>
+                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
                         <DirHeadLocate location='/jaghit/study material/java' />
                     </span>
                     <span>
@@ -25,6 +28,19 @@ class DirHead extends React.Component {
                 </div>
             </div>
         );
+    }
+    toggleTab() {
+        if (this.state.tab === 'Private') {
+            this.setState({
+                toggle: 'fa fa-toggle-on',
+                tab: 'Shared'
+            });
+        } else {
+            this.setState({
+                toggle: 'fa fa-toggle-off',
+                tab: 'Private'
+            });
+        }
     }
 }
 
@@ -41,6 +57,16 @@ const dolphin = {
         fontSize: '28px',
         fontWeight: 'bold',
         padding: '12px'
+    },
+    tab: {
+        border: '1px solid #777',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        display: 'flex',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        marginLeft: '12px',
+        padding: '6px 12px'
     }
 }
 

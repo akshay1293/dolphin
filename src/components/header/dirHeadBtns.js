@@ -19,6 +19,7 @@ const dolphin = {
     },
     btn: {
         color: 'rgba(0, 0, 0, 0.7)',
+        cursor: 'pointer',
         fontSize: '16px',
         margin: '0 12px'
     }

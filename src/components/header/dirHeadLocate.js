@@ -36,6 +36,7 @@ const dolphin = {
     inner: {
         border: '1px solid #777',
         borderRadius: '4px',
+        cursor: 'pointer',
         display: 'flex',
         fontSize: '16px',
         padding: '6px 12px'
