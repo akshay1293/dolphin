@@ -4,11 +4,15 @@ export default class FolderCard extends Component {
     constructor() {
         super();
         this.shortName = null;
+        this.state = {
+
+            clicked: false,
+        }
     }
     render() {
 
         const folderCard = {
-            border: '1px solid gray',
+            border: this.state.clicked ? '1px solid #7ad5c9' : '1px solid gray',
             display: 'flex',
             alignItems: 'space-between',
             margin: '15px 15px',
@@ -23,7 +27,7 @@ export default class FolderCard extends Component {
         this.trimName();
         return (
             <div>
-                <div style={folderCard}>
+                <div style={folderCard} onClick={this.toggleClick.bind(this)}>
                     <i className="fa fa-folder-o" style={{ fontSize: '16px', padding: '0px' }} aria-hidden="true"></i>
                     <span style={{ paddingLeft: '8px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
                 </div>
@@ -36,6 +40,20 @@ export default class FolderCard extends Component {
 
             this.shortName = this.props.name.substring(0, 8) + '...';
             //return this.shortName;
+        }
+    }
+
+    toggleClick() {
+
+        if (this.state.clicked) {
+            this.setState({
+                clicked: false,
+            })
+        } else {
+
+            this.setState({
+                clicked: true,
+            })
         }
     }
 

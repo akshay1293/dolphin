@@ -5,12 +5,16 @@ export default class FileCard extends Component {
     constructor() {
         super();
         this.shortName = null;
+        this.state = {
+
+            clicked: false,
+        }
     }
 
     render() {
 
         const fileCard = {
-            border: '1px solid gray',
+            border: this.state.clicked ? '1px solid #7ad5c9' : '1px solid gray',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -26,9 +30,7 @@ export default class FileCard extends Component {
         this.trimName();
         return (
             <div>
-
-
-                <div style={fileCard}>
+                <div style={fileCard} onClick={this.toggleClick.bind(this)}>
                     <i className="fa fa-file-o" style={{ fontSize: '60px', padding: '0px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
                     <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
                 </div>
@@ -40,6 +42,20 @@ export default class FileCard extends Component {
         if (this.props.name.length > 11) {
             console.log(this.props.name.substring(0, 6).length);
             this.shortName = this.props.name.substring(0, 8) + '...';
+        }
+    }
+
+    toggleClick() {
+
+        if (this.state.clicked) {
+            this.setState({
+                clicked: false,
+            })
+        } else {
+
+            this.setState({
+                clicked: true,
+            })
         }
     }
 
