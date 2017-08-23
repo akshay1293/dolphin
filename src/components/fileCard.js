@@ -19,7 +19,8 @@ export default class FileCard extends Component {
             //background: '#eee',
             padding: '8px 32px',
             borderRadius: '4px',
-            boxShadow: '0px 0px 4px 0px #999'
+            boxShadow: '0px 0px 4px 0px #999',
+            minWidth: '100px'
 
         }
         this.trimName();

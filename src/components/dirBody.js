@@ -50,13 +50,13 @@ export default class DirBody extends Component {
             <div id="test" style={style.container}>
                 <p style={style.folderText}>Folders</p>
                 <div style={style.foldercontent}>
-                    <FolderCard name={'Folder Namegikg'} />
+                    <FolderCard name={'Name'} />
 
                 </div>
                 <p style={style.fileText}>Files</p>
 
                 <div style={style.filecontent}>
-                    <FileCard name={'Folder Namejk'} />
+                    <FileCard name={'File Name'} />
                 </div>
             </div>
         );

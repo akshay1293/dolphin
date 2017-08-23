@@ -16,7 +16,8 @@ export default class FolderCard extends Component {
             //background: '#eee',
             padding: '8px 20px',
             borderRadius: '4px',
-            boxShadow: '0px 0px 4px 0px #999'
+            boxShadow: '0px 0px 4px 0px #999',
+            minWidth: '120px'
 
         }
         this.trimName();
