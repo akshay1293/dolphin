@@ -18,13 +18,16 @@
     top: 0;
 }
 
-.contentTop{
 
+.contentTop{
+    display: flex;
     flex: 1.1;
+    flex-direction: column;
 }
 
 .contentBottom{
 
     flex: 3.9;
     display:flex;
+
 }

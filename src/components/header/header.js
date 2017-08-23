@@ -17,14 +17,16 @@ export default class Header extends Component {
         this.userData = this.cookie.get('dolphinUser');
         const style = {
             container: {
-                backgroundColor: '#EAF0F4',
-                padding: '10px 15px',
-                border: '1px solid #CCC7C7',
+                backgroundColor: '#7AD5C9',
+                padding: '0 15px',
+                //border: '1px solid #CCC7C7',
                 display: 'flex',
-                flexDirection: 'row',
+
+                //flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '35px'
+                //height: '35px'
+                flex: 1
             },
             profile: {
                 fontSize: '13px',
