@@ -21,6 +21,7 @@ export default class Header extends Component {
                 padding: '0 15px',
                 //border: '1px solid #CCC7C7',
                 display: 'flex',
+
                 //flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -98,9 +99,9 @@ export default class Header extends Component {
         return (
 
             <div style={style.container}>
-                <div style={{ marginRight: 'auto' }}><p>Dashboard</p></div>
+                <div style={{ marginRight: 'auto', fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>Dashboard</p></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
-                    <i className="fa fa-bars" style={{ color: '#575858', fontSize: '16px', paddingRight: '10px' }}></i>
+                    <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px' }}></i>
                 </div>
                 <div style={style.popupContainer}>
                     <div style={style.popupInfo}>
