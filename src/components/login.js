@@ -33,7 +33,7 @@ class Login extends Component {
         window.gapi.signin2.render('signin-button', {
             'scope': 'https://www.googleapis.com/auth/plus.login',
             'height': 60,
-            'width': 255,
+            'width': 280,
             'longTitle': true,
             'onsuccess': this.onSignIn.bind(this),
         });
