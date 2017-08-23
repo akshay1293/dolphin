@@ -15,7 +15,7 @@ class SideBar extends React.Component {
                 <hr style={dolphin.seperator} />
                 <Button name='Upload File' func={this.uploadFile} class='fa fa-upload' />
                 <Button name='Create Folder' func={this.createFolder} class='fa fa-plus-square' />
-                <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontFamily: 'sans-serif', position: 'absolute' }}>All rights reserved.</span>
+                <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
             </div>
         );
     }
@@ -43,13 +43,12 @@ const dolphin = {
         width: '100%'
     },
     image: {
-        height: '139px',
-        padding: '32px 0 0 0',
-        width: '168px'
+        height: '116px',
+        padding: '16px 0 0 0'
     },
     seperator: {
         border: '1px solid #7AD5C9',
-        margin: '32px 0 24px 0',
+        margin: '16px 0 12px 0',
         width: '100%'
     },
     button: {
@@ -59,12 +58,11 @@ const dolphin = {
         color: '#EEE',
         cursor: 'pointer',
         display: 'flex',
-        fontFamily: 'sans-serif',
-        fontSize: '18px',
-        height: '36px',
+        fontSize: '16px',
+        height: '32px',
         justifyContent: 'center',
         margin: '8px',
-        width: '168px'
+        width: '140px'
     },
     font: {
         color: '#7AD5C9',

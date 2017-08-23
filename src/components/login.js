@@ -14,7 +14,6 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        console.log('component will mount');
         if (this.cookie.get('dolphinUser') !== undefined) {
 
             this.setState({
@@ -42,7 +41,6 @@ class Login extends Component {
 
     render() {
         if (this.state.isLoggedIn) {
-            console.log('here');
             return <Dashboard signOut={this.signOutHandler.bind(this)} />
         } else {
             return (
@@ -54,8 +52,6 @@ class Login extends Component {
     }
 
     onSignIn(user) {
-        console.log(user.getBasicProfile());
-
         this.setState({
 
             isLoggedIn: true,
@@ -65,10 +61,8 @@ class Login extends Component {
             this.cookie.set('dolphinUser', this.state.basicProfile);
         });
 
-        //console.log("user signing out")
         var auth2 = window.gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            //console.log('User signed out.');
         });
     }
 
