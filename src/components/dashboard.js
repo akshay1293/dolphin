@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import DirBody from './dirBody'
 import SideBar from './sideBar.js';
 import Header from './header/header';
 import '../App.css';
@@ -20,11 +20,11 @@ export default class Dashboard extends Component {
                     <SideBar />
                 </div>
                 <div style={dolphin.content}>
-                    <div className='header'>
+                    <div className='contentTop'>
                         <Header onClick={this.props.signOut} />
                     </div>
-                    <div className='content'>
-                        <h1>hello world</h1>
+                    <div className='contentBottom'>
+                        <DirBody />
                     </div>
                 </div>
             </div>
@@ -49,5 +49,6 @@ const dolphin = {
         display: 'flex',
         flex: '0.85',
         flexDirection: 'column'
-    }
+    },
+
 };
