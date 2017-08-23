@@ -12,7 +12,7 @@ export default class FolderCard extends Component {
             display: 'flex',
             alignItems: 'space-between',
             margin: '15px 15px',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             //background: '#eee',
             padding: '8px 20px',
             borderRadius: '4px',
