@@ -11,11 +11,14 @@ class SideBar extends React.Component {
     render() {
         return (
             <div style={dolphin.global}>
-                <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
-                <hr style={dolphin.seperator} />
-                <Button name='Upload File' func={this.uploadFile} class='fa fa-upload' />
-                <Button name='Create Folder' func={this.createFolder} class='fa fa-plus-square' />
-                <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
+                <div style={dolphin.bar.head}>
+                    <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
+                </div>
+                <div style={dolphin.bar.body}>
+                    <Button name='Upload File' func={this.uploadFile} class='fa fa-upload' />
+                    <Button name='Create Folder' func={this.createFolder} class='fa fa-plus-square' />
+                    <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
+                </div>
             </div>
         );
     }
@@ -39,17 +42,12 @@ const dolphin = {
         color: '#FFFFFF',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         position: 'relative',
         width: '100%'
     },
     image: {
-        height: '116px',
-        padding: '16px 0 0 0'
-    },
-    seperator: {
-        border: '1px solid #7AD5C9',
-        margin: '16px 0 12px 0',
-        width: '100%'
+        height: '116px'
     },
     button: {
         alignItems: 'center',
@@ -61,12 +59,28 @@ const dolphin = {
         fontSize: '16px',
         height: '32px',
         justifyContent: 'center',
-        margin: '8px',
-        width: '140px'
+        marginTop: '24px',
+        width: '160px'
     },
     font: {
         color: '#7AD5C9',
         marginRight: '8px'
+    },
+    bar: {
+        head: {
+            alignItems: 'center',
+            borderBottom: '2px solid #7AD5C9',
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'center',
+            width: '100%'
+        },
+        body: {
+            alignItems: 'center',
+            display: 'flex',
+            flex: 4,
+            flexDirection: 'column'
+        }
     }
 };
 

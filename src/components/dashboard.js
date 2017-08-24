@@ -45,11 +45,11 @@ const dolphin = {
     },
     sidebar: {
         display: 'flex',
-        flex: '0.15'
+        flex: '1'
     },
     content: {
         display: 'flex',
-        flex: '0.85',
+        flex: '5',
         flexDirection: 'column'
     },
 

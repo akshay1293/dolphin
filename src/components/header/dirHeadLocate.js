@@ -7,7 +7,7 @@ class DirHeadLocate extends React.Component {
         let eachLocation = location.split('/');
         for (let i = 1; i < eachLocation.length; i++) {
             returnThis.push(
-                <span style={{ display: 'flex' }}>
+                <span key={i.toString()} style={{ display: 'flex' }}>
                     <span style={dolphin.outter}>
                         <i className="fa fa-chevron-right" aria-hidden="true"></i>
                     </span>
@@ -31,7 +31,7 @@ const dolphin = {
     },
     outter: {
         display: 'flex',
-        padding: '6px 12px'
+        padding: '6px 8px'
     },
     inner: {
         border: '1px solid #777',
@@ -39,7 +39,7 @@ const dolphin = {
         cursor: 'pointer',
         display: 'flex',
         fontSize: '16px',
-        padding: '6px 12px'
+        padding: '6px'
     }
 };
 
