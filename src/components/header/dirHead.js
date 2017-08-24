@@ -15,11 +15,11 @@ class DirHead extends React.Component {
         return (
             <div style={dolphin.container}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{paddingRight: '10px'}}></i>{this.state.folderName}</span>
+                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px'}}></i>{this.state.folderName}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span  style={{ display: 'flex', flexDirection: 'row'}}>
-                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
+                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
                         <DirHeadLocate location='/Documents' />
                     </span>
                     <span>
@@ -30,16 +30,19 @@ class DirHead extends React.Component {
         );
     }
     toggleTab() {
+        let toggleBtn = document.getElementById('toggleBtn');
         if (this.state.tab === 'Private') {
             this.setState({
                 toggle: 'fa fa-toggle-on',
                 tab: 'Shared'
             });
+            toggleBtn.style.color = '#3333ff';
         } else {
             this.setState({
                 toggle: 'fa fa-toggle-off',
                 tab: 'Private'
             });
+            toggleBtn.style.color = 'black';
         }
     }
 }
@@ -47,7 +50,7 @@ class DirHead extends React.Component {
 const dolphin = {
     container: {
         backgroundColor: '#FFF',
-        boxShadow: '0 6px 16px #CCC',
+        boxShadow: '0 4px 12px #CCC',
         display: 'flex',
         flex: 2,
         flexDirection: 'column'
@@ -66,7 +69,8 @@ const dolphin = {
         fontSize: '16px',
         fontWeight: 'bold',
         marginLeft: '8px',
-        padding: '6px'
+        padding: '6px',
+        width: '82px'
     }
 }
 
