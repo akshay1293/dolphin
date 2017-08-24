@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cookies from 'universal-cookie';
 
 export default class FileCard extends Component {
 
@@ -9,6 +10,7 @@ export default class FileCard extends Component {
 
             mouseOver: false,
         }
+        this.cookie = new cookies();
     }
 
     render() {
@@ -31,8 +33,8 @@ export default class FileCard extends Component {
         this.trimName();
         return (
             <div>
-                <div style={fileCard}>
-                    <i className="fa fa-file-o" style={{ fontSize: '60px', padding: '0px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
+                <div style={fileCard} onClick={this.clickHandler.bind(this)}>
+                    <i className="fa fa-file-o" style={{ fontSize: '60px', paddingTop: '10px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
                     <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
                 </div>
             </div>
@@ -43,5 +45,10 @@ export default class FileCard extends Component {
         if (this.props.name.length > 11) {
             this.shortName = this.props.name.substring(0, 8) + '...';
         }
+    }
+    clickHandler(e) {
+        let path = this.cookie.get('path');
+        let filePath = path + '/' + this.props.name;
+        this.props.onClick('', filePath);
     }
 }
