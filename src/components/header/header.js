@@ -19,13 +19,9 @@ export default class Header extends Component {
             container: {
                 backgroundColor: '#7AD5C9',
                 padding: '0 15px',
-                //border: '1px solid #CCC7C7',
                 display: 'flex',
-
-                //flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                //height: '35px'
                 flex: 1
             },
             profile: {
