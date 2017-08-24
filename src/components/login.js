@@ -59,6 +59,7 @@ class Login extends Component {
         }, () => {
 
             this.cookie.set('dolphinUser', this.state.basicProfile);
+            this.cookie.set('path', '/' + this.state.basicProfile.U3.split('@')[0]);
         });
 
         var auth2 = window.gapi.auth2.getAuthInstance();
@@ -68,6 +69,7 @@ class Login extends Component {
 
     signOutHandler() {
         this.cookie.remove('dolphinUser');
+        this.cookie.remove('path');
         this.setState({ isLoggedIn: false, });
         window.location.reload();
     }
