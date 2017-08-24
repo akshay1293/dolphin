@@ -21,13 +21,13 @@
 
 .contentTop{
     display: flex;
-    flex: 1.1;
+    flex: 1;
     flex-direction: column;
 }
 
 .contentBottom{
 
-    flex: 3.9;
+    flex: 4;
     display:flex;
 
 }
