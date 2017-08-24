@@ -52,7 +52,7 @@ export default class Header extends Component {
                 top: '5px',
                 right: '27px',
                 backgroundColor: '#F5F9F9',
-                border: '1px solid #CCC7C7',
+                border: '1px solid #34495E',
                 borderRadius: '16px 0px 16px 16px',
                 padding: '8px 20px',
                 display: 'flex',
@@ -101,7 +101,7 @@ export default class Header extends Component {
             <div style={style.container}>
                 <div style={{ marginRight: 'auto', fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>Dashboard</p></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
-                    <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px' }}></i>
+                    <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px', cursor: 'pointer' }}></i>
                 </div>
                 <div style={style.popupContainer}>
                     <div style={style.popupInfo}>
