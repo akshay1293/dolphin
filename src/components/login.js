@@ -52,14 +52,28 @@ class Login extends Component {
     }
 
     onSignIn(user) {
+        this.cookie.set('dolphinUser', user.getBasicProfile());
+        this.cookie.set('path', '/' + user.getBasicProfile().U3.split('@')[0]);
         this.setState({
 
             isLoggedIn: true,
             basicProfile: user.getBasicProfile(),
         }, () => {
 
-            this.cookie.set('dolphinUser', this.state.basicProfile);
-            this.cookie.set('path', '/' + this.state.basicProfile.U3.split('@')[0]);
+
+
+            fetch('http://172.18.1.147:8080/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({
+                    name: this.state.basicProfile.U3.split('@')[0],
+
+                })
+            }).then((response) => { return response.json() })
+                .then((responseJson) => console.log(responseJson))
         });
 
         var auth2 = window.gapi.auth2.getAuthInstance();
