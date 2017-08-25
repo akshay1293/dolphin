@@ -16,16 +16,14 @@ export default class FileCard extends Component {
     render() {
 
         const fileCard = {
-            border: '1px solid gray',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             margin: '15px 15px',
             justifyContent: 'space-around',
-            //background: '#eee',
             padding: '8px 32px',
-            borderRadius: '4px',
-            boxShadow: '0px 0px 4px 0px #999',
+            borderRadius: '2px',
+            boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
             minWidth: '96px',
             cursor: 'pointer',
 

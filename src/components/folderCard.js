@@ -10,15 +10,13 @@ export default class FolderCard extends Component {
     render() {
 
         const folderCard = {
-            border: '1px solid gray',
             display: 'flex',
             alignItems: 'space-between',
             margin: '15px 15px',
             justifyContent: 'flex-start',
-            //background: '#eee',
             padding: '8px 20px',
-            borderRadius: '4px',
-            boxShadow: '0px 0px 4px 0px #999',
+            borderRadius: '2px',
+            boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
             minWidth: '120px',
             cursor: 'pointer'
 
@@ -41,7 +39,7 @@ export default class FolderCard extends Component {
     doubleClickHandler(e) {
         let path = this.cookie.get('path');
         this.cookie.set('path', path + '/' + this.props.name);
-        this.props.onClick(this.cookie.get('path'),'');
+        this.props.onClick(this.cookie.get('path'), '');
     }
 
     trimName() {
