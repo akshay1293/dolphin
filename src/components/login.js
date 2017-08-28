@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import Dashboard from './dashboard';
 import cookies from 'universal-cookie';
+import Config from '../config';
 
 class Login extends Component {
 
@@ -11,6 +12,7 @@ class Login extends Component {
         this.state = {
             isLoggedIn: false,
         }
+        this.config = new Config();
     }
 
     componentWillMount() {
@@ -62,7 +64,7 @@ class Login extends Component {
 
 
 
-            fetch('http://172.18.1.147:8080/new', {
+            fetch(this.config.getUrl('new'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
