@@ -1,36 +1,53 @@
 import React from 'react';
 import Dolphin from '../assets/dolphin-logo.png';
+import Cookie from 'universal-cookie';
 
 class SideBar extends React.Component {
-    uploadFile() {
-        console.log('uploadFile; testOk');
+    constructor() {
+        super();
+        this.cookie = new Cookie();
+    }
+    uploadFile(e) {
+        var myForm = document.getElementById('myForm');
+        let formData = new FormData(myForm);
+
+        fetch('http://127.0.0.1:8080/upload', {
+            method: 'POST',
+            body: formData
+        }).then(() => {
+            window.location.reload();
+        });        
     }
     createFolder() {
-        console.log('createFolder; testOk');
+        document.getElementById('sidebar').style.filter = 'blur(2px)';
+        document.getElementById('content').style.filter = 'blur(2px)';
+        document.getElementById('create-popup').style.display = 'flex';
+        document.getElementById('folder-name').focus();
     }
+
     render() {
         return (
             <div style={dolphin.global}>
+
                 <div style={dolphin.bar.head}>
                     <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
                 </div>
                 <div style={dolphin.bar.body}>
-                    <Button name='Upload File' func={this.uploadFile} class='fa fa-upload' />
-                    <Button name='Create Folder' func={this.createFolder} class='fa fa-plus-square' />
+                    <form id='myForm'>
+                        <input id="fileId" onChange={this.uploadFile.bind(this)} name="file" style={dolphin.inputfile} type="file" />
+                        <label htmlFor="fileId" style={dolphin.button}>
+                            <i style={dolphin.font} className='fa fa-upload' aria-hidden='true'></i>
+                            Upload File
+                        </label>
+                        <input type="text" name="path" style={dolphin.inputfile} value={this.cookie.get('path')} readOnly />
+                    </form>
+                    <span style={dolphin.button} onClick={this.createFolder}>
+                        <i style={dolphin.font} className='fa fa-plus-square' aria-hidden='true'></i>
+                        Create Folder
+                    </span>
                     <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
                 </div>
             </div>
-        );
-    }
-}
-
-class Button extends React.Component {
-    render() {
-        return (
-            <span style={dolphin.button} onClick={this.props.func}>
-                <i style={dolphin.font} className={this.props.class} aria-hidden="true"></i>
-                {this.props.name}
-            </span>
         );
     }
 }
@@ -81,6 +98,14 @@ const dolphin = {
             flex: 4,
             flexDirection: 'column'
         }
+    },
+    inputfile: {
+        width: '0.1px',
+        height: '0.1px',
+        opacity: 0,
+        overflow: 'hidden',
+        position: 'absolute',
+        zIndex: '-1'
     }
 };
 

@@ -6,7 +6,7 @@ class DirHead extends React.Component {
     constructor() {
         super();
         this.state = {
-            folderName: 'Documents',
+            folderName: 'Home',
             toggle: 'fa fa-toggle-off',
             tab: 'Private',
         }
@@ -18,11 +18,11 @@ class DirHead extends React.Component {
                     <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px'}}></i>{this.state.folderName}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span  style={{ display: 'flex', flexDirection: 'row'}}>
+                    <span style={{ display: 'flex', flexDirection: 'row'}}>
                         <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
-                        <DirHeadLocate location='/Documents' />
+                        <DirHeadLocate location='' />
                     </span>
-                    <span>
+                    <span style={{display: 'none'}}>
                         <DirHeadBtns />
                     </span>
                 </div>
