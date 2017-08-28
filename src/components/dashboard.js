@@ -25,13 +25,10 @@ export default class Dashboard extends Component {
 
     }
     cancelCreate() {
-        let dash = document.getElementById('sidebar');
-        let dash2 = document.getElementById('content');
-        dash.style.filter = 'blur(0)';
-        dash2.style.filter = 'blur(0)';
-
-        let pop = document.getElementById('create-popup');
-        pop.style.display = 'none';
+        document.getElementById('sidebar').style.filter = 'blur(0)';
+        document.getElementById('content').style.filter = 'blur(0)';
+        document.getElementById('create-popup').style.display = 'none';
+        document.getElementById('folder-name').value = '';
     }
     okayCreate() {
         fetch('http://127.0.0.1:8080/create', {
@@ -43,14 +40,12 @@ export default class Dashboard extends Component {
                 name: document.getElementById('folder-name').value,
                 path: this.cookie.get('path')
             })
+        }).then(() => {
+            document.getElementById('sidebar').style.filter = 'blur(0)';
+            document.getElementById('content').style.filter = 'blur(0)';
+            document.getElementById('create-popup').style.display = 'none';
+            window.location.reload();
         });
-        let dash = document.getElementById('sidebar');
-        let dash2 = document.getElementById('content');
-        dash.style.filter = 'blur(0)';
-        dash2.style.filter = 'blur(0)';
-
-        let pop = document.getElementById('create-popup');
-        pop.style.display = 'none';
     }
     render() {
 
@@ -60,7 +55,7 @@ export default class Dashboard extends Component {
                     <div style={dolphin.create.dialog}>
                         <div style={dolphin.create.dialogFF}>New folder</div>
                         <div style={dolphin.create.dialogSF}>
-                            <input id="folder-name" type='type' style={{height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%'}} />
+                            <input id="folder-name" type='type' style={{ height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%' }} />
                         </div>
                         <div style={dolphin.create.dialogTF}>
                             <input type='button' style={dolphin.create.dialogCA} value='Cancel' onClick={this.cancelCreate.bind(this)} />
@@ -122,8 +117,8 @@ const dolphin = {
             zIndex: 99
         },
         dialog: {
-            backgroundColor: '#FFF',
-            border: '2px solid rgb(122, 213, 201)',
+            backgroundColor: 'rgba(122, 213, 201, 0.7)',
+            border: '3px solid rgb(100, 200, 200)',
             color: '#000',
             display: 'flex',
             flexDirection: 'column',
@@ -154,8 +149,9 @@ const dolphin = {
             flex: 2,
         },
         dialogCA: {
-            backgroundColor: '#FFF',
+            backgroundColor: 'inherit',
             border: 'none',
+            cursor: 'pointer',
             fontSize: '18px',
             margin: '0 0 0 16px',
             outline: 'none',
@@ -165,6 +161,7 @@ const dolphin = {
             backgroundColor: '#34495E',
             border: 'none',
             color: '#FFF',
+            cursor: 'pointer',
             fontSize: '18px',
             margin: '0 0 0 16px',
             outline: 'none',

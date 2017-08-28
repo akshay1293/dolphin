@@ -3,36 +3,26 @@ import Dolphin from '../assets/dolphin-logo.png';
 import Cookie from 'universal-cookie';
 
 class SideBar extends React.Component {
-    // fileUpload = null;
     constructor() {
         super();
         this.cookie = new Cookie();
     }
     uploadFile(e) {
-        // let cookie = new Cookie();
         var myForm = document.getElementById('myForm');
         let formData = new FormData(myForm);
-
-        // let path = cookie.get('path');
-        // console.log(this.fileUpload.files);
-
-        // let formData = new FormData();
-        // formData.append('file', 'this.fileUpload');
-        // formData.append('path', '/');
 
         fetch('http://127.0.0.1:8080/upload', {
             method: 'POST',
             body: formData
-        });
+        }).then(() => {
+            window.location.reload();
+        });        
     }
     createFolder() {
-        let dash = document.getElementById('sidebar');
-        let dash2 = document.getElementById('content');
-        dash.style.filter = 'blur(2px)';
-        dash2.style.filter = 'blur(2px)';
-
-        let pop = document.getElementById('create-popup');
-        pop.style.display = 'flex';
+        document.getElementById('sidebar').style.filter = 'blur(2px)';
+        document.getElementById('content').style.filter = 'blur(2px)';
+        document.getElementById('create-popup').style.display = 'flex';
+        document.getElementById('folder-name').focus();
     }
 
     render() {
@@ -44,7 +34,7 @@ class SideBar extends React.Component {
                 </div>
                 <div style={dolphin.bar.body}>
                     <form id='myForm'>
-                        <input id="fileId" onChange={this.uploadFile.bind(this)} name="file" ref={(ref) => { this.fileUpload = ref }} style={dolphin.inputfile} type="file" />
+                        <input id="fileId" onChange={this.uploadFile.bind(this)} name="file" style={dolphin.inputfile} type="file" />
                         <label htmlFor="fileId" style={dolphin.button}>
                             <i style={dolphin.font} className='fa fa-upload' aria-hidden='true'></i>
                             Upload File
