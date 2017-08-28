@@ -14,7 +14,7 @@ class DirHeadBtns extends React.Component {
         let btnDownload = document.getElementById('download');
         let input = document.getElementById('input');
         let rename = document.getElementById('rename');
-        if (input.style.display == 'none') {
+        if (input.style.display === 'none') {
             btnShare.style.display = 'none';
             btnDownload.style.display = 'none';
             input.style.display = 'block';

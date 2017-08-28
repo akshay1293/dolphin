@@ -6,11 +6,19 @@ class SideBar extends React.Component {
         console.log('uploadFile; testOk');
     }
     createFolder() {
-        console.log('createFolder; testOk');
+        let dash = document.getElementById('dashboard1');
+        let dash2 = document.getElementById('dashboard2');
+        dash.style.filter = 'blur(2px)';
+        dash2.style.filter = 'blur(2px)';
+
+        let pop = document.getElementById('create-popup');
+        pop.style.display = 'flex';
     }
+    
     render() {
         return (
             <div style={dolphin.global}>
+                
                 <div style={dolphin.bar.head}>
                     <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
                 </div>
@@ -81,7 +89,8 @@ const dolphin = {
             flex: 4,
             flexDirection: 'column'
         }
-    }
+    },
+    
 };
 
 export default SideBar;
