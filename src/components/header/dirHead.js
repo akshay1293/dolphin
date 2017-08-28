@@ -36,7 +36,7 @@ class DirHead extends React.Component {
                 toggle: 'fa fa-toggle-on',
                 tab: 'Shared'
             });
-            toggleBtn.style.color = '#3333ff';
+            toggleBtn.style.color = '#7AD5C9';
         } else {
             this.setState({
                 toggle: 'fa fa-toggle-off',

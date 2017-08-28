@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import FolderCard from './folderCard';
 import FileCard from './fileCard';
+import cookies from 'universal-cookie';
 
 
 export default class DirBody extends Component {
 
+    constructor() {
+
+        super();
+
+        this.state = {
+            responseJson: null,
+        };
+        this.cookie = new cookies();
+    }
+
+    componentDidMount() {
+        fetch('http://172.18.1.147:8080/list', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                path: this.cookie.get('path'),
+            })
+        }).then((response) => { return response.json() })
+            .then((responseJson) => {
+                this.setState({ responseJson })
+            })
+    }
+
     render() {
+        console.log('render');
         const style = {
 
             container: {
@@ -41,31 +68,43 @@ export default class DirBody extends Component {
             }
 
         }
-
         return (
             <div id="test" style={style.container}>
                 <p style={style.folderText}>Folders</p>
                 <div style={style.foldercontent}>
-                    <FolderCard name={'folder Nameaf'} />
-                    <FolderCard name={'folder Namedfef'} />
-                    <FolderCard name={'folder Namefaeqwf'} />
-                    <FolderCard name={'folder Name'} />
-                    <FolderCard name={'folder Name'} />
-                    <FolderCard name={'folder Name'} />
+                    {this.renderFolderCards()}
                 </div>
                 <p style={style.fileText}>Files</p>
-
                 <div style={style.filecontent}>
-                    <FileCard name={'Name'} />
-                    <FileCard name={'Name'} />
-                    <FileCard name={'Name'} />
-                    <FileCard name={'Name'} />
-                    <FileCard name={'Name'} />
-                    <FileCard name={'Name'} />
+                    {this.renderFileCards()}
                 </div>
             </div>
         );
     }
+
+    renderFolderCards() {
+
+        if (this.state.responseJson !== null) {
+
+            return this.state.responseJson.folders.map((folder, i) => {
+
+                return <FolderCard name={folder} onClick={this.props.clickHandler} key={i} />
+            });
+        }
+    }
+
+    renderFileCards() {
+
+        if (this.state.responseJson !== null) {
+
+            return this.state.responseJson.files.map((file, i) => {
+
+                return <FileCard name={file} onClick={this.props.clickHandler} key={i} />
+            });
+        }
+    }
+
+
 
 
 }

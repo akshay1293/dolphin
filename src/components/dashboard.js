@@ -13,6 +13,16 @@ export default class Dashboard extends Component {
         super(props);
 
         this.cookie = new cookies();
+        this.state = {
+
+            path: null,
+            fileName: null,
+        }
+    }
+
+    componentWillMount() {
+
+
     }
     cancelCreate() {
         let dash = document.getElementById('dashboard1');
@@ -24,6 +34,7 @@ export default class Dashboard extends Component {
         pop.style.display = 'none';
     }
     render() {
+
         return (
             <div style={dolphin.container}>
                 <div id='create-popup' style={dolphin.create.background}>
@@ -47,11 +58,16 @@ export default class Dashboard extends Component {
                         <DirHead />
                     </div>
                     <div className='contentBottom'>
-                        <DirBody />
+                        <DirBody clickHandler={this.clickHandler.bind(this)} />
                     </div>
                 </div>
+                {console.log('folder : ' + this.state.path + ' file : ' + this.state.fileName)}
             </div>
         );
+    }
+
+    clickHandler(path, fileName) {
+        this.setState({ path, fileName });
     }
 }
 

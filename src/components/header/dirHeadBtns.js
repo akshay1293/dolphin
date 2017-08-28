@@ -1,10 +1,10 @@
 import React from 'react';
 
 class DirHeadBtns extends React.Component {
-    
+
     constructor() {
         super();
-        
+
         this.state = {
             renameIcon: 'fa fa-pencil'
         };
@@ -19,7 +19,7 @@ class DirHeadBtns extends React.Component {
             btnDownload.style.display = 'none';
             input.style.display = 'block';
             input.focus();
-            
+
             this.setState({
                 renameIcon: 'fa fa-check'
             });
