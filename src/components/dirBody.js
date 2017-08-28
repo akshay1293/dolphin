@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import FolderCard from './folderCard';
-import FileCard from './fileCard';
 import cookies from 'universal-cookie';
-
+import Config from '../config';
 
 export default class DirBody extends Component {
 
@@ -14,10 +12,11 @@ export default class DirBody extends Component {
             responseJson: null,
         };
         this.cookie = new cookies();
+        this.config = new Config();
     }
 
     componentDidMount() {
-        fetch('http://172.18.1.147:8080/list', {
+        fetch(this.config.getUrl('list'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,11 +27,12 @@ export default class DirBody extends Component {
         }).then((response) => { return response.json() })
             .then((responseJson) => {
                 this.setState({ responseJson })
+                console.log(responseJson);
             })
     }
 
     render() {
-        console.log('render');
+
         const style = {
 
             container: {
@@ -42,13 +42,12 @@ export default class DirBody extends Component {
             },
             foldercontent: {
 
-                display: 'flex',
+                display: 'none',
                 flexWrap: 'wrap',
                 padding: '20px 80px',
-
             },
             filecontent: {
-                display: 'flex',
+                display: 'none',
                 flexWrap: 'wrap',
                 padding: '20px 80px'
             },
@@ -57,25 +56,28 @@ export default class DirBody extends Component {
                 paddingTop: '36px',
                 fontSize: '18px',
                 fontWeight: '500px',
-                color: '#6A6564  '
+                color: '#6A6564  ',
+                display: 'none',
             },
             fileText: {
                 padding: '0px 30px',
                 fontSize: '18px',
                 fontWeight: '500px',
                 color: '#6A6564',
-                marginTop: '30px'
+                marginTop: '35px',
+                display: 'none'
             }
 
         }
+
         return (
-            <div id="test" style={style.container}>
-                <p style={style.folderText}>Folders</p>
-                <div style={style.foldercontent}>
+            <div style={style.container}>
+                <p id='folder-text' style={style.folderText}>Folders</p>
+                <div id='folder-content' style={style.foldercontent}>
                     {this.renderFolderCards()}
                 </div>
-                <p style={style.fileText}>Files</p>
-                <div style={style.filecontent}>
+                <p id='file-text' style={style.fileText}>Files</p>
+                <div id='file-content' style={style.filecontent}>
                     {this.renderFileCards()}
                 </div>
             </div>
@@ -85,26 +87,174 @@ export default class DirBody extends Component {
     renderFolderCards() {
 
         if (this.state.responseJson !== null) {
+            if (this.state.responseJson.exists === true) {
+                if (this.state.responseJson.folders.length !== 0) {
+                    document.getElementById('folder-text').style.display = 'block';
+                    document.getElementById('folder-content').style.display = 'flex';
+                }
+                return this.state.responseJson.folders.map((folder, i) => {
 
-            return this.state.responseJson.folders.map((folder, i) => {
-
-                return <FolderCard name={folder} onClick={this.props.clickHandler} key={i} />
-            });
+                    return <FolderCard name={folder} openFolder={this.onDoubleClick.bind(this)} onClick={this.props.clickHandler} key={i} />
+                });
+            }
         }
     }
+
+
 
     renderFileCards() {
 
         if (this.state.responseJson !== null) {
+            if (this.state.responseJson.exists === true) {
+                if (this.state.responseJson.files.length !== 0) {
+                    document.getElementById('file-text').style.display = 'block';
+                    document.getElementById('file-content').style.display = 'flex';
+                }
+                return this.state.responseJson.files.map((file, i) => {
 
-            return this.state.responseJson.files.map((file, i) => {
+                    return <FileCard name={file} onClick={this.props.clickHandler} key={i} />
+                });
+            }
+        }
+    }
+    onDoubleClick() {
 
-                return <FileCard name={file} onClick={this.props.clickHandler} key={i} />
-            });
+        window.location.reload();
+
+    }
+}
+
+var oldFolderName = null;
+var oldFileName = null;
+
+/****folderCard component starts from here****/
+
+class FolderCard extends Component {
+    constructor(props) {
+        super(props);
+        this.shortName = null;
+        this.cookie = new cookies();
+
+    }
+
+    render() {
+
+        const folderCard = {
+            display: 'flex',
+            alignItems: 'space-between',
+            margin: '15px 15px',
+            justifyContent: 'flex-start',
+            padding: '8px 20px',
+            borderRadius: '2px',
+            boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
+            minWidth: '120px',
+            cursor: 'pointer'
+
+        }
+        this.trimName();
+        return (
+            <div>
+                <div id={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
+                    <i className="fa fa-folder-o" style={{ fontSize: '16px', padding: '0px' }} aria-hidden="true"></i>
+                    <span style={{ paddingLeft: '8px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
+                </div>
+            </div>
+        );
+    }
+
+    onclickHandler(e) {
+        if (this.props.name !== oldFolderName) {
+            if (oldFileName !== null) {
+
+                document.getElementById(oldFileName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            }
+            document.getElementById(this.props.name).style.boxShadow = '0 2px 2px 0 rgb(122,213,201), 0 3px 1px -2px rgb(122,213,201), 0 1px 5px 0 rgb(122,213,201)';
+            if (oldFolderName !== null) {
+                document.getElementById(oldFolderName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            }
+            oldFolderName = this.props.name;
         }
     }
 
+    doubleClickHandler(e) {
+        let path = this.cookie.get('path');
+        this.cookie.set('path', path + '/' + this.props.name);
+        this.props.onClick(this.cookie.get('path'), '');
+        this.props.openFolder();
+    }
 
+    trimName() {
+        if (this.props.name.length > 11) {
 
-
+            this.shortName = this.props.name.substring(0, 8) + '...';
+        }
+    }
 }
+
+
+/****fileCard component starts from here****/
+
+
+class FileCard extends Component {
+
+    constructor() {
+        super();
+        this.shortName = null;
+        this.state = {
+
+            mouseOver: false,
+        }
+        this.cookie = new cookies();
+    }
+
+    render() {
+
+        const fileCard = {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '15px 15px',
+            justifyContent: 'space-around',
+            padding: '8px 32px',
+            borderRadius: '2px',
+            boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
+            minWidth: '96px',
+            cursor: 'pointer',
+
+        }
+        this.trimName();
+        return (
+            <div>
+                <div id={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
+                    <i className="fa fa-file-o" style={{ fontSize: '60px', paddingTop: '10px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
+                    <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
+                </div>
+            </div>
+        );
+    }
+
+    trimName() {
+        if (this.props.name.length > 11) {
+            this.shortName = this.props.name.substring(0, 8) + '...';
+        }
+    }
+    clickHandler(e) {
+        let path = this.cookie.get('path');
+        let filePath = path + '/' + this.props.name;
+        this.props.onClick('', filePath);
+
+        if (this.props.name !== oldFileName) {
+            if (oldFolderName !== null) {
+
+                document.getElementById(oldFolderName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            }
+            document.getElementById(this.props.name).style.boxShadow = '0 2px 2px 0 rgb(122,213,201), 0 3px 1px -2px rgb(122,213,201), 0 1px 5px 0 rgb(122,213,201)';
+            if (oldFileName !== null)
+                document.getElementById(oldFileName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            oldFileName = this.props.name;
+
+        }
+
+    }
+}
+
