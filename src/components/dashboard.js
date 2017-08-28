@@ -5,13 +5,14 @@ import Header from './header/header';
 import DirHead from './header/dirHead';
 import '../App.css';
 import cookies from 'universal-cookie';
+import Config from '../config'
 
 export default class Dashboard extends Component {
 
     constructor(props) {
 
         super(props);
-
+        this.config = new Config();
         this.cookie = new cookies();
         this.state = {
 
@@ -31,7 +32,7 @@ export default class Dashboard extends Component {
         document.getElementById('folder-name').value = '';
     }
     okayCreate() {
-        fetch('http://127.0.0.1:8080/create', {
+        fetch(this.config.getUrl('create'), {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

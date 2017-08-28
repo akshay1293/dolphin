@@ -1,22 +1,24 @@
 import React from 'react';
 import Dolphin from '../assets/dolphin-logo.png';
 import Cookie from 'universal-cookie';
+import Config from '../config';
 
 class SideBar extends React.Component {
     constructor() {
         super();
+        this.config = new Config();
         this.cookie = new Cookie();
     }
     uploadFile(e) {
         var myForm = document.getElementById('myForm');
         let formData = new FormData(myForm);
 
-        fetch('http://127.0.0.1:8080/upload', {
+        fetch(this.config.getUrl('upload'), {
             method: 'POST',
             body: formData
         }).then(() => {
             window.location.reload();
-        });        
+        });
     }
     createFolder() {
         document.getElementById('sidebar').style.filter = 'blur(2px)';
