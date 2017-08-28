@@ -25,8 +25,27 @@ export default class Dashboard extends Component {
 
     }
     cancelCreate() {
-        let dash = document.getElementById('dashboard1');
-        let dash2 = document.getElementById('dashboard2');
+        let dash = document.getElementById('sidebar');
+        let dash2 = document.getElementById('content');
+        dash.style.filter = 'blur(0)';
+        dash2.style.filter = 'blur(0)';
+
+        let pop = document.getElementById('create-popup');
+        pop.style.display = 'none';
+    }
+    okayCreate() {
+        fetch('http://127.0.0.1:8080/create', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: document.getElementById('folder-name').value,
+                path: this.cookie.get('path')
+            })
+        });
+        let dash = document.getElementById('sidebar');
+        let dash2 = document.getElementById('content');
         dash.style.filter = 'blur(0)';
         dash2.style.filter = 'blur(0)';
 
@@ -41,18 +60,18 @@ export default class Dashboard extends Component {
                     <div style={dolphin.create.dialog}>
                         <div style={dolphin.create.dialogFF}>New folder</div>
                         <div style={dolphin.create.dialogSF}>
-                            <input type='type' style={{height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%'}} />
+                            <input id="folder-name" type='type' style={{height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%'}} />
                         </div>
                         <div style={dolphin.create.dialogTF}>
                             <input type='button' style={dolphin.create.dialogCA} value='Cancel' onClick={this.cancelCreate.bind(this)} />
-                            <input type='button' style={dolphin.create.dialogCR} value='Create' />
+                            <input type='button' style={dolphin.create.dialogCR} value='Create' onClick={this.okayCreate.bind(this)} />
                         </div>
                     </div>
                 </div>
-                <div id="dashboard1" style={dolphin.sidebar}>
+                <div id="sidebar" style={dolphin.sidebar}>
                     <SideBar />
                 </div>
-                <div id="dashboard2" style={dolphin.content}>
+                <div id="content" style={dolphin.content}>
                     <div className='contentTop'>
                         <Header onClick={this.props.signOut} />
                         <DirHead />
