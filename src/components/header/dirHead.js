@@ -15,24 +15,31 @@ class DirHead extends React.Component {
         if (name.length > 40) {
             name = name.substring(0, 38) + '...';
         }
+
         this.state = {
             folderName: name,
             toggle: 'fa fa-toggle-off',
             tab: 'Private',
         };
     }
+
+
     render() {
         return (
             <div style={dolphin.container}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px'}}></i>{this.state.folderName}</span>
+                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px' }}></i>{this.state.folderName}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ display: 'flex', flexDirection: 'row'}}>
-                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{ paddingRight: '8px' }}></i>{this.state.tab}</span>
                         <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
+<<<<<<< HEAD
                     <span style={{display: 'flex'}}>
+=======
+                    <span style={{ display: this.props.clicked === true ? 'flex' : 'none' }}>
+>>>>>>> 36a249d3a97c89c29a67760b00e0dda7a4fcec3e
                         <DirHeadBtns />
                     </span>
                 </div>

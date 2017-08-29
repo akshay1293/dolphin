@@ -38,6 +38,7 @@ export default class DirBody extends Component {
             container: {
                 flex: 1,
                 overflowX: 'auto',
+                //zIndex: '-99',
 
             },
             foldercontent: {
@@ -163,6 +164,10 @@ class FolderCard extends Component {
     }
 
     onclickHandler(e) {
+        let path = this.cookie.get('path');
+        this.cookie.set('folderPath', path + '/' + this.props.name);
+        this.props.onClick(this.cookie.get('path'), '');
+
         if (this.props.name !== oldFolderName) {
             if (oldFileName !== null) {
 
@@ -173,6 +178,12 @@ class FolderCard extends Component {
                 document.getElementById(oldFolderName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
             }
             oldFolderName = this.props.name;
+        } else {
+            document.getElementById(oldFolderName).style.boxShadow = '0 2px 2px 0 rgb(122,213,201), 0 3px 1px -2px rgb(122,213,201), 0 1px 5px 0 rgb(122,213,201)';
+            if (oldFileName !== null) {
+
+                document.getElementById(oldFileName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            }
         }
     }
 
@@ -241,6 +252,7 @@ class FileCard extends Component {
     clickHandler(e) {
         let path = this.cookie.get('path');
         let filePath = path + '/' + this.props.name;
+        this.cookie.set('filePath', filePath);
         this.props.onClick('', filePath);
 
         if (this.props.name !== oldFileName) {
@@ -253,6 +265,12 @@ class FileCard extends Component {
                 document.getElementById(oldFileName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
             oldFileName = this.props.name;
 
+        } else {
+            document.getElementById(oldFileName).style.boxShadow = '0 2px 2px 0 rgb(122,213,201), 0 3px 1px -2px rgb(122,213,201), 0 1px 5px 0 rgb(122,213,201)';
+            if (oldFolderName !== null) {
+
+                document.getElementById(oldFolderName).style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)';
+            }
         }
 
     }
