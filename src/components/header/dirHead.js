@@ -6,12 +6,20 @@ import Cookie from 'universal-cookie';
 class DirHead extends React.Component {
     constructor() {
         super();
+        this.cookie = new Cookie();
+        let oldPath = this.cookie.get('path');
+        // console.log(oldPath);
+        let splitPath = oldPath.split('/');
+        // console.log(splitPath);
+        let name = (splitPath.length <= 2) ? 'Home' : splitPath[splitPath.length - 1];
+        if (name.length > 40) {
+            name = name.substring(0, 38) + '...';
+        }
         this.state = {
-            folderName: 'Home',
+            folderName: name,
             toggle: 'fa fa-toggle-off',
             tab: 'Private',
         };
-        this.cookie = new Cookie();
     }
     render() {
         return (
@@ -24,7 +32,7 @@ class DirHead extends React.Component {
                         <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
                         <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
-                    <span style={{display: 'none'}}>
+                    <span style={{display: 'flex'}}>
                         <DirHeadBtns />
                     </span>
                 </div>
