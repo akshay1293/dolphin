@@ -89,7 +89,7 @@ class Login extends Component {
         this.cookie.remove('dolphinUser');
         this.cookie.remove('path');
         this.cookie.remove('filePath');
-        this.cookie.remove('folderPath');
+        this.cookie.remove('exactPath');
         this.setState({ isLoggedIn: false, });
         window.location.reload();
     }

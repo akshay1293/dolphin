@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import cookies from 'universal-cookie';
-import SearchBar from './searchBar';
 
 export default class Header extends Component {
 
@@ -97,7 +96,6 @@ export default class Header extends Component {
 
             <div style={style.container}>
                 <div style={{ fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>Dashboard</p></div>
-                <div><SearchBar /></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
                     <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px', cursor: 'pointer' }}></i>
                 </div>
