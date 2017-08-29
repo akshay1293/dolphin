@@ -59,7 +59,11 @@ export default class Dashboard extends Component {
                     <div style={dolphin.create.dialog}>
                         <div style={dolphin.create.dialogFF}>New folder</div>
                         <div style={dolphin.create.dialogSF}>
-                            <input id="folder-name" type='type' style={{ height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%' }} />
+                            <input id="folder-name" type='type' onKeyDown={(e) => {
+                                if (e.keyCode === 13) {
+                                    this.okayCreate();
+                                }
+                            }} style={{ height: '75%', fontSize: '18px', outline: 'none', padding: '2px 8px', width: '100%' }} />
                         </div>
                         <div style={dolphin.create.dialogTF}>
                             <input type='button' style={dolphin.create.dialogCA} value='Cancel' onClick={this.cancelCreate.bind(this)} />
@@ -79,7 +83,7 @@ export default class Dashboard extends Component {
                         <DirBody clickHandler={this.clickHandler.bind(this)} />
                     </div>
                 </div>
-                {console.log('folder : ' + this.state.path + ' file : ' + this.state.fileName)}
+                {/* {console.log('folder : ' + this.state.path + ' file : ' + this.state.fileName)} */}
             </div>
         );
     }

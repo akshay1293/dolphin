@@ -27,7 +27,7 @@ export default class DirBody extends Component {
         }).then((response) => { return response.json() })
             .then((responseJson) => {
                 this.setState({ responseJson })
-                console.log(responseJson);
+                // console.log(responseJson);
             })
     }
 

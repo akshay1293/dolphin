@@ -4,14 +4,23 @@ import DirHeadLocate from './dirHeadLocate';
 import Cookie from 'universal-cookie';
 
 class DirHead extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+        this.cookie = new Cookie();
+        let oldPath = this.cookie.get('path');
+        // console.log(oldPath);
+        let splitPath = oldPath.split('/');
+        // console.log(splitPath);
+        let name = (splitPath.length <= 2) ? 'Home' : splitPath[splitPath.length - 1];
+        if (name.length > 40) {
+            name = name.substring(0, 38) + '...';
+        }
+
         this.state = {
-            folderName: 'Home',
+            folderName: name,
             toggle: 'fa fa-toggle-off',
             tab: 'Private',
         };
-        this.cookie = new Cookie();
     }
 
 
