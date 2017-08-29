@@ -4,8 +4,8 @@ import DirHeadLocate from './dirHeadLocate';
 import Cookie from 'universal-cookie';
 
 class DirHead extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             folderName: 'Home',
             toggle: 'fa fa-toggle-off',
@@ -13,18 +13,20 @@ class DirHead extends React.Component {
         };
         this.cookie = new Cookie();
     }
+
+
     render() {
         return (
             <div style={dolphin.container}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px'}}></i>{this.state.folderName}</span>
+                    <span style={dolphin.foldername}><i className="fa fa-folder-open-o" aria-hidden="true" style={{ paddingRight: '10px' }}></i>{this.state.folderName}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ display: 'flex', flexDirection: 'row'}}>
-                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{ paddingRight: '8px' }}></i>{this.state.tab}</span>
                         <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
-                    <span style={{display: 'none'}}>
+                    <span style={{ display: this.props.clicked === true ? 'flex' : 'none' }}>
                         <DirHeadBtns />
                     </span>
                 </div>
