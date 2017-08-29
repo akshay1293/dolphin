@@ -35,11 +35,7 @@ class DirHead extends React.Component {
                         <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{ paddingRight: '8px' }}></i>{this.state.tab}</span>
                         <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
-<<<<<<< HEAD
-                    <span style={{display: 'flex'}}>
-=======
                     <span style={{ display: this.props.clicked === true ? 'flex' : 'none' }}>
->>>>>>> 36a249d3a97c89c29a67760b00e0dda7a4fcec3e
                         <DirHeadBtns />
                     </span>
                 </div>
