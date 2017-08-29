@@ -96,7 +96,9 @@ const dolphin = {
         left: 0,
         position: 'absolute',
         right: 0,
-        top: 0
+        top: 0,
+        minHeight: '768px',
+        minWidth: '1366px'
     },
     sidebar: {
         display: 'flex',
