@@ -56,6 +56,8 @@ class Login extends Component {
     onSignIn(user) {
         this.cookie.set('dolphinUser', user.getBasicProfile());
         this.cookie.set('path', '/' + user.getBasicProfile().U3.split('@')[0]);
+        this.cookie.set('folderPath', '/' + user.getBasicProfile().U3.split('@')[0]);
+        this.cookie.set('filePath', '/' + user.getBasicProfile().U3.split('@')[0]);
         this.setState({
 
             isLoggedIn: true,
@@ -86,6 +88,8 @@ class Login extends Component {
     signOutHandler() {
         this.cookie.remove('dolphinUser');
         this.cookie.remove('path');
+        this.cookie.remove('filePath');
+        this.cookie.remove('folderPath');
         this.setState({ isLoggedIn: false, });
         window.location.reload();
     }
