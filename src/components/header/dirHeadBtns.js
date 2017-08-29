@@ -1,11 +1,11 @@
 import React from 'react';
-// import Cookie from 'universal-button';
+import Cookie from 'universal-cookie';
 
 class DirHeadBtns extends React.Component {
 
     constructor() {
         super();
-
+        this.cookie = new Cookie();
         this.state = {
             renameIcon: 'fa fa-pencil'
         };
@@ -44,7 +44,7 @@ class DirHeadBtns extends React.Component {
             <div style={dolphin.container}>
 
                 <span id="share" style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
-                <span id="download" style={dolphin.btn}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span>
+                <a href={this.cookie.get('filePath')} download><span id="download" style={dolphin.btn}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span></a>
                 <div id="input" style={dolphin.rename}>
                     <input type="text" placeholder="Enter new filename" style={dolphin.input} />
                 </div>
