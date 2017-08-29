@@ -14,10 +14,13 @@ export default class Dashboard extends Component {
         super(props);
         this.config = new Config();
         this.cookie = new cookies();
+        this.cookie.set('filePath', this.cookie.get('path'));
+        this.cookie.set('folderPath', this.cookie.get('path'));
         this.state = {
 
             path: null,
             fileName: null,
+            clicked: false,
         }
     }
 
@@ -70,7 +73,7 @@ export default class Dashboard extends Component {
                 <div id="content" style={dolphin.content}>
                     <div className='contentTop'>
                         <Header onClick={this.props.signOut} />
-                        <DirHead />
+                        <DirHead clicked={this.state.clicked} />
                     </div>
                     <div className='contentBottom'>
                         <DirBody clickHandler={this.clickHandler.bind(this)} />
@@ -82,7 +85,7 @@ export default class Dashboard extends Component {
     }
 
     clickHandler(path, fileName) {
-        this.setState({ path, fileName });
+        this.setState({ path, fileName, clicked: true });
     }
 }
 
