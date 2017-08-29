@@ -14,8 +14,8 @@ export default class Dashboard extends Component {
         super(props);
         this.config = new Config();
         this.cookie = new cookies();
-        this.cookie.set('filePath', this.cookie.get('path'));
-        this.cookie.set('folderPath', this.cookie.get('path'));
+        this.cookie.set('filePath', '');
+        this.cookie.set('exactPath', this.cookie.get('path'));
         this.state = {
 
             path: null,

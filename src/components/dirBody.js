@@ -165,7 +165,8 @@ class FolderCard extends Component {
 
     onclickHandler(e) {
         let path = this.cookie.get('path');
-        this.cookie.set('folderPath', path + '/' + this.props.name);
+        this.cookie.set('exactPath', path + '/' + this.props.name);
+        this.cookie.set('filePath', '');
         this.props.onClick(this.cookie.get('path'), '');
 
         if (this.props.name !== oldFolderName) {
@@ -253,6 +254,7 @@ class FileCard extends Component {
         let path = this.cookie.get('path');
         let filePath = path + '/' + this.props.name;
         this.cookie.set('filePath', filePath);
+        this.cookie.set('exactPath', filePath);
         this.props.onClick('', filePath);
 
         if (this.props.name !== oldFileName) {
