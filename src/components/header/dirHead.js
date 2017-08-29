@@ -1,6 +1,7 @@
 import React from 'react';
 import DirHeadBtns from './dirHeadBtns';
 import DirHeadLocate from './dirHeadLocate';
+import Cookie from 'universal-cookie';
 
 class DirHead extends React.Component {
     constructor() {
@@ -9,7 +10,8 @@ class DirHead extends React.Component {
             folderName: 'Home',
             toggle: 'fa fa-toggle-off',
             tab: 'Private',
-        }
+        };
+        this.cookie = new Cookie();
     }
     render() {
         return (
@@ -20,7 +22,7 @@ class DirHead extends React.Component {
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ display: 'flex', flexDirection: 'row'}}>
                         <span style={dolphin.tab} onClick={this.toggleTab.bind(this)}><i id="toggleBtn" className={this.state.toggle} aria-hidden="true" style={{paddingRight: '8px'}}></i>{this.state.tab}</span>
-                        <DirHeadLocate location='' />
+                        <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
                     <span style={{display: 'none'}}>
                         <DirHeadBtns />
