@@ -17,7 +17,7 @@ export default class Dashboard extends Component {
         this.cookie.set('filePath', '');
         this.cookie.set('exactPath', this.cookie.get('path'));
         this.state = {
-
+            downloadPath: '',
             path: null,
             fileName: null,
             clicked: false,
@@ -77,7 +77,7 @@ export default class Dashboard extends Component {
                 <div id="content" style={dolphin.content}>
                     <div className='contentTop'>
                         <Header onClick={this.props.signOut} />
-                        <DirHead clicked={this.state.clicked} />
+                        <DirHead clicked={this.state.clicked} downloadPath={this.state.downloadPath} />
                     </div>
                     <div className='contentBottom'>
                         <DirBody clickHandler={this.clickHandler.bind(this)} />
@@ -88,8 +88,8 @@ export default class Dashboard extends Component {
         );
     }
 
-    clickHandler(path, fileName) {
-        this.setState({ path, fileName, clicked: true });
+    clickHandler(path, fileName, downloadPath) {
+        this.setState({ path, fileName, clicked: true, downloadPath });
     }
 }
 
@@ -101,8 +101,8 @@ const dolphin = {
         position: 'absolute',
         right: 0,
         top: 0,
-        minHeight: '768px',
-        minWidth: '1366px'
+        minHeight: '648px',
+        minWidth: '1152px'
     },
     sidebar: {
         display: 'flex',

@@ -36,7 +36,7 @@ class DirHead extends React.Component {
                         <DirHeadLocate location={this.cookie.get('path')} />
                     </span>
                     <span style={{ display: this.props.clicked === true ? 'flex' : 'none' }}>
-                        <DirHeadBtns />
+                        <DirHeadBtns downloadPath={this.props.downloadPath} />
                     </span>
                 </div>
             </div>

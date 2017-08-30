@@ -22,8 +22,8 @@ class DirHeadBtns extends React.Component {
         return (
             <div style={dolphin.container}>
 
-                <span id="share" title='share' style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
-                <span id="download" title='download' style={dolphin.btn} onClick={this.download.bind(this)}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span>
+                <span id="head-share" title='Share' style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
+                <a href={this.props.downloadPath} download><span id="head-download" title='Download' style={dolphin.btn}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span></a>
                 <div id="input" style={dolphin.rename}>
                     <input id="filefolderrename" type="text" onKeyDown={(e) => {
                         if (e.keyCode === 13) {
@@ -31,31 +31,18 @@ class DirHeadBtns extends React.Component {
                         }
                     }} placeholder="Enter new filename" style={dolphin.input} />
                 </div>
-                <span id="rename" title='rename' style={dolphin.btn} onClick={this.toggleRename.bind(this)}><i style={{ border: '1px solid #cccc00', borderRadius: '4px', padding: '6px' }} className={this.state.renameIcon} aria-hidden="true"></i></span>
-                <span id="delete" title='delete' style={dolphin.btn} onClick={this.delete.bind(this)}><i style={{ border: '1px solid #ff3333', borderRadius: '4px', padding: '6px' }} className="fa fa-trash" aria-hidden="true"></i></span>
+                <span id="head-rename" title='Rename' style={dolphin.btn} onClick={this.toggleRename.bind(this)}><i style={{ border: '1px solid #cccc00', borderRadius: '4px', padding: '6px' }} className={this.state.renameIcon} aria-hidden="true"></i></span>
+                <span id="head-delete" title='Delete' style={dolphin.btn} onClick={this.delete.bind(this)}><i style={{ border: '1px solid #ff3333', borderRadius: '4px', padding: '6px' }} className="fa fa-trash" aria-hidden="true"></i></span>
 
             </div>
         );
     }
 
-    download() {
-        console.log(this.cookie.get('filePath'));
-        fetch(this.config.getUrl('download'), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                path: this.cookie.get('filePath')
-            })
-        });
-    }
-
     toggleRename() {
-        let btnShare = document.getElementById('share');
-        let btnDownload = document.getElementById('download');
-        let input = document.getElementById('input');
-        let rename = document.getElementById('rename');
+        let btnShare = document.getElementById('head-share');
+        let btnDownload = document.getElementById('head-download');
+        let input = document.getElementById('head-input');
+        let rename = document.getElementById('head-rename');
         if (input.style.display === 'none') {
             btnShare.style.display = 'none';
             btnDownload.style.display = 'none';
