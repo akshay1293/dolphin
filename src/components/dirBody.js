@@ -135,6 +135,7 @@ class FolderCard extends Component {
         super(props);
         this.shortName = null;
         this.cookie = new cookies();
+        this.config = new Config();
 
     }
 
@@ -191,6 +192,7 @@ class FolderCard extends Component {
     doubleClickHandler(e) {
         let path = this.cookie.get('path');
         this.cookie.set('path', path + '/' + this.props.name);
+        this.cookie.set('fakePath', this.cookie.get('fakePath') + '/' + this.config.appendRandom(this.props.name));
         this.props.onClick(this.cookie.get('path'), '');
         this.props.openFolder();
     }

@@ -1,10 +1,12 @@
 import React from 'react';
 import Cookie from 'universal-cookie';
+import Config from '../../config';
 
 class DirHeadLocate extends React.Component {
     constructor() {
         super();
         this.cookie = new Cookie();
+        this.config = new Config();
     }
 
     render() {
@@ -17,7 +19,7 @@ class DirHeadLocate extends React.Component {
                     <span style={dolphin.outter}>
                         <i className="fa fa-chevron-right" aria-hidden="true"></i>
                     </span>
-                    <span style={dolphin.inner} onClick={this.navigateTo.bind(this, eachLocation[i])}>{eachLocation[i]}</span>
+                    <span style={dolphin.inner} onClick={this.navigateTo.bind(this, eachLocation[i])}>{this.config.getName(eachLocation[i])}</span>
                 </span>
             );
         }
@@ -31,13 +33,21 @@ class DirHeadLocate extends React.Component {
 
     navigateTo(folderName) {
         // console.log(folderName);
-        let oldPath = this.cookie.get('path');
+        let originalPath = '';
+        let oldPath = this.cookie.get('fakePath');
         // console.log(oldPath);
         let splitPath = oldPath.split(folderName);
         // console.log(splitPath);
         let newPath = splitPath[0] + folderName;
-        // console.log(newPath);
-        this.cookie.set('path', newPath);
+        //console.log(newPath);
+        let pathArray = newPath.split('/');
+        for (let i = 1; i < pathArray.length; i++) {
+
+            originalPath = originalPath + '/' + this.config.getName(pathArray[i]);
+        }
+        //console.log(originalPath);
+        this.cookie.set('fakePath', newPath);
+        this.cookie.set('path', originalPath);
         window.location.reload();
     }
 }

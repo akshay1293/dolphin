@@ -52,7 +52,6 @@ export default class Dashboard extends Component {
         });
     }
     render() {
-
         return (
             <div style={dolphin.container}>
                 <div id='create-popup' style={dolphin.create.background}>
