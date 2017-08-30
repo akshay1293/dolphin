@@ -155,7 +155,7 @@ class FolderCard extends Component {
         this.trimName();
         return (
             <div>
-                <div id={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
+                <div id={this.props.name} title={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
                     <i className="fa fa-folder-o" style={{ fontSize: '16px', padding: '0px' }} aria-hidden="true"></i>
                     <span style={{ paddingLeft: '8px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
                 </div>
