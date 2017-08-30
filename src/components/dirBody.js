@@ -45,12 +45,12 @@ export default class DirBody extends Component {
 
                 display: 'none',
                 flexWrap: 'wrap',
-                padding: '20px 80px',
+                padding: '20px 60px',
             },
             filecontent: {
                 display: 'none',
                 flexWrap: 'wrap',
-                padding: '20px 80px'
+                padding: '20px 60px'
             },
             folderText: {
                 padding: '0px 30px',
@@ -135,7 +135,9 @@ class FolderCard extends Component {
         super(props);
         this.shortName = null;
         this.cookie = new cookies();
+
         this.config = new Config();
+
 
     }
 
@@ -192,8 +194,11 @@ class FolderCard extends Component {
     doubleClickHandler(e) {
         let path = this.cookie.get('path');
         this.cookie.set('path', path + '/' + this.props.name);
+
+
         this.cookie.set('fakePath', this.cookie.get('fakePath') + '/' + this.config.appendRandom(this.props.name));
-        this.props.onClick(this.cookie.get('path'), '');
+        this.props.onClick(this.cookie.get('path'), '','');
+
         this.props.openFolder();
     }
 
@@ -219,6 +224,7 @@ class FileCard extends Component {
             mouseOver: false,
         }
         this.cookie = new cookies();
+        this.config = new Config();
     }
 
     render() {
@@ -257,7 +263,12 @@ class FileCard extends Component {
         let filePath = path + '/' + this.props.name;
         this.cookie.set('filePath', filePath);
         this.cookie.set('exactPath', filePath);
-        this.props.onClick('', filePath);
+
+        fetch(this.config.getUrl(this.cookie.get('filePath')), {
+            method: 'GET'
+        }).then((response) => {
+            this.props.onClick('', filePath, response.url);
+        });
 
         if (this.props.name !== oldFileName) {
             if (oldFolderName !== null) {

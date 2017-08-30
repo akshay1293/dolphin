@@ -38,7 +38,7 @@ class DirHead extends React.Component {
 
                     </span>
                     <span style={{ display: this.props.clicked === true ? 'flex' : 'none' }}>
-                        <DirHeadBtns />
+                        <DirHeadBtns downloadPath={this.props.downloadPath} />
                     </span>
                 </div>
             </div>

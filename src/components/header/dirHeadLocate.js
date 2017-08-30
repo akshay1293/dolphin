@@ -53,8 +53,9 @@ class DirHeadLocate extends React.Component {
         let originalPath = '';
         let oldPath = this.cookie.get('fakePath');
         // console.log(oldPath);
-        let splitPath = oldPath.split(folderName);
+        let splitPath = oldPath.split('/' + folderName);
         // console.log(splitPath);
+
         let newPath = splitPath[0] + folderName;
         //console.log(newPath);
         let pathArray = newPath.split('/');
