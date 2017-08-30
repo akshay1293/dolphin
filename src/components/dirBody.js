@@ -237,7 +237,7 @@ class FileCard extends Component {
         this.trimName();
         return (
             <div>
-                <div id={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
+                <div id={this.props.name} title={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
                     <i className="fa fa-file-o" style={{ fontSize: '60px', paddingTop: '10px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
                     <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
                 </div>
