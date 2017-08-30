@@ -17,13 +17,12 @@ export default class Header extends Component {
         this.userData = this.cookie.get('dolphinUser');
         const style = {
             container: {
-                backgroundColor: '#EAF0F4',
-                padding: '10px 15px',
-                border: '1px solid #CCC7C7',
+                backgroundColor: '#7AD5C9',
+                padding: '0 10px',
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'flex-end',
-                alignItems: 'flex-end',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flex: 1
             },
             profile: {
                 fontSize: '13px',
@@ -49,7 +48,7 @@ export default class Header extends Component {
                 top: '5px',
                 right: '27px',
                 backgroundColor: '#F5F9F9',
-                border: '1px solid #CCC7C7',
+                border: '1px solid #34495E',
                 borderRadius: '16px 0px 16px 16px',
                 padding: '8px 20px',
                 display: 'flex',
@@ -96,9 +95,9 @@ export default class Header extends Component {
         return (
 
             <div style={style.container}>
-                <div style={{ marginRight: 'auto' }}><p>Dashboard</p></div>
+                <div style={{ fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>Dashboard</p></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
-                    <i className="fa fa-bars" style={{ color: '#575858', fontSize: '16px', paddingRight: '10px' }}></i>
+                    <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px', cursor: 'pointer' }}></i>
                 </div>
                 <div style={style.popupContainer}>
                     <div style={style.popupInfo}>

@@ -1,33 +1,55 @@
 import React from 'react';
 import Dolphin from '../assets/dolphin-logo.png';
+import Cookie from 'universal-cookie';
+import Config from '../config';
 
 class SideBar extends React.Component {
-    uploadFile() {
-        console.log('uploadFile; testOk');
+    constructor() {
+        super();
+        this.config = new Config();
+        this.cookie = new Cookie();
+    }
+    uploadFile(e) {
+        var myForm = document.getElementById('myForm');
+        let formData = new FormData(myForm);
+
+        fetch(this.config.getUrl('upload'), {
+            method: 'POST',
+            body: formData
+        }).then(() => {
+            window.location.reload();
+        });
     }
     createFolder() {
-        console.log('createFolder; testOk');
+        document.getElementById('sidebar').style.filter = 'blur(2px)';
+        document.getElementById('content').style.filter = 'blur(2px)';
+        document.getElementById('create-popup').style.display = 'flex';
+        document.getElementById('folder-name').focus();
     }
+
     render() {
         return (
             <div style={dolphin.global}>
-                <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
-                <hr style={dolphin.seperator} />
-                <Button name='Upload File' func={this.uploadFile} class='fa fa-upload' />
-                <Button name='Create Folder' func={this.createFolder} class='fa fa-plus-square' />
-                <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
-            </div>
-        );
-    }
-}
 
-class Button extends React.Component {
-    render() {
-        return (
-            <span style={dolphin.button} onClick={this.props.func}>
-                <i style={dolphin.font} className={this.props.class} aria-hidden="true"></i>
-                {this.props.name}
-            </span>
+                <div style={dolphin.bar.head}>
+                    <img style={dolphin.image} src={Dolphin} alt='Dolphin' />
+                </div>
+                <div style={dolphin.bar.body}>
+                    <form id='myForm'>
+                        <input id="fileId" onChange={this.uploadFile.bind(this)} name="file" style={dolphin.inputfile} type="file" />
+                        <label htmlFor="fileId" style={dolphin.button}>
+                            <i style={dolphin.font} className='fa fa-upload' aria-hidden='true'></i>
+                            Upload File
+                        </label>
+                        <input type="text" name="path" style={dolphin.inputfile} value={this.cookie.get('path')} readOnly />
+                    </form>
+                    <span style={dolphin.button} onClick={this.createFolder}>
+                        <i style={dolphin.font} className='fa fa-plus-square' aria-hidden='true'></i>
+                        Create Folder
+                    </span>
+                    <span style={{ bottom: '16px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '12px', position: 'absolute' }}>All rights reserved.</span>
+                </div>
+            </div>
         );
     }
 }
@@ -39,17 +61,12 @@ const dolphin = {
         color: '#FFFFFF',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         position: 'relative',
         width: '100%'
     },
     image: {
-        height: '116px',
-        padding: '16px 0 0 0'
-    },
-    seperator: {
-        border: '1px solid #7AD5C9',
-        margin: '16px 0 12px 0',
-        width: '100%'
+        height: '116px'
     },
     button: {
         alignItems: 'center',
@@ -61,12 +78,36 @@ const dolphin = {
         fontSize: '16px',
         height: '32px',
         justifyContent: 'center',
-        margin: '8px',
-        width: '140px'
+        marginTop: '24px',
+        width: '160px'
     },
     font: {
         color: '#7AD5C9',
         marginRight: '8px'
+    },
+    bar: {
+        head: {
+            alignItems: 'center',
+            borderBottom: '2px solid #7AD5C9',
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'center',
+            width: '100%'
+        },
+        body: {
+            alignItems: 'center',
+            display: 'flex',
+            flex: 4,
+            flexDirection: 'column'
+        }
+    },
+    inputfile: {
+        width: '0.1px',
+        height: '0.1px',
+        opacity: 0,
+        overflow: 'hidden',
+        position: 'absolute',
+        zIndex: '-1'
     }
 };
 

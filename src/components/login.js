@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import Dashboard from './dashboard';
 import cookies from 'universal-cookie';
+import Config from '../config';
 
 class Login extends Component {
 
@@ -11,6 +12,7 @@ class Login extends Component {
         this.state = {
             isLoggedIn: false,
         }
+        this.config = new Config();
     }
 
     componentWillMount() {
@@ -33,7 +35,7 @@ class Login extends Component {
         window.gapi.signin2.render('signin-button', {
             'scope': 'https://www.googleapis.com/auth/plus.login',
             'height': 60,
-            'width': 255,
+            'width': 280,
             'longTitle': true,
             'onsuccess': this.onSignIn.bind(this),
         });
@@ -52,13 +54,31 @@ class Login extends Component {
     }
 
     onSignIn(user) {
+        this.cookie.set('dolphinUser', user.getBasicProfile());
+        this.cookie.set('path', '/' + user.getBasicProfile().U3.split('@')[0]);
+        this.cookie.set('fakePath', '/' + this.config.appendRandom(user.getBasicProfile().U3.split('@')[0]));
+        this.cookie.set('exactPath', '/' + user.getBasicProfile().U3.split('@')[0]);
+        this.cookie.set('filePath', '');
         this.setState({
 
             isLoggedIn: true,
             basicProfile: user.getBasicProfile(),
         }, () => {
 
-            this.cookie.set('dolphinUser', this.state.basicProfile);
+
+
+            fetch(this.config.getUrl('new'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({
+                    name: this.state.basicProfile.U3.split('@')[0],
+
+                })
+            }).then((response) => { return response.json() })
+                .then((responseJson) => console.log(responseJson))
         });
 
         var auth2 = window.gapi.auth2.getAuthInstance();
@@ -68,6 +88,10 @@ class Login extends Component {
 
     signOutHandler() {
         this.cookie.remove('dolphinUser');
+        this.cookie.remove('path');
+        this.cookie.remove('filePath');
+        this.cookie.remove('exactPath');
+        this.cookie.remove('fakePath');
         this.setState({ isLoggedIn: false, });
         window.location.reload();
     }
