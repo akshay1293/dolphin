@@ -27,7 +27,7 @@ export default class DirBody extends Component {
         }).then((response) => { return response.json() })
             .then((responseJson) => {
                 this.setState({ responseJson })
-                console.log(responseJson);
+                // console.log(responseJson);
             })
     }
 
@@ -156,7 +156,7 @@ class FolderCard extends Component {
         this.trimName();
         return (
             <div>
-                <div id={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
+                <div id={this.props.name} title={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
                     <i className="fa fa-folder-o" style={{ fontSize: '16px', padding: '0px' }} aria-hidden="true"></i>
                     <span style={{ paddingLeft: '8px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
                 </div>
@@ -239,7 +239,7 @@ class FileCard extends Component {
         this.trimName();
         return (
             <div>
-                <div id={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
+                <div id={this.props.name} title={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
                     <i className="fa fa-file-o" style={{ fontSize: '60px', paddingTop: '10px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
                     <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
                 </div>

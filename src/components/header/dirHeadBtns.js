@@ -1,14 +1,56 @@
 import React from 'react';
+import Cookie from 'universal-cookie';
+import Config from '../../config';
 
 class DirHeadBtns extends React.Component {
 
     constructor() {
         super();
-
+        this.cookie = new Cookie();
+        // let path = this.cookie.get('exactPath');
+        // let splitPath = path.split('/');
+        // let fileName = splitPath[splitPath.length - 1];
         this.state = {
-            renameIcon: 'fa fa-pencil'
+            renameIcon: 'fa fa-pencil',
+            // fileName: fileName
         };
+        this.config = new Config();
     }
+
+    render() {
+        // return fileName;
+        return (
+            <div style={dolphin.container}>
+
+                <span id="share" title='share' style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
+                <span id="download" title='download' style={dolphin.btn} onClick={this.download.bind(this)}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span>
+                <div id="input" style={dolphin.rename}>
+                    <input id="filefolderrename" type="text" onKeyDown={(e) => {
+                        if (e.keyCode === 13) {
+                            this.toggleRename();
+                        }
+                    }} placeholder="Enter new filename" style={dolphin.input} />
+                </div>
+                <span id="rename" title='rename' style={dolphin.btn} onClick={this.toggleRename.bind(this)}><i style={{ border: '1px solid #cccc00', borderRadius: '4px', padding: '6px' }} className={this.state.renameIcon} aria-hidden="true"></i></span>
+                <span id="delete" title='delete' style={dolphin.btn} onClick={this.delete.bind(this)}><i style={{ border: '1px solid #ff3333', borderRadius: '4px', padding: '6px' }} className="fa fa-trash" aria-hidden="true"></i></span>
+
+            </div>
+        );
+    }
+
+    download() {
+        console.log(this.cookie.get('filePath'));
+        fetch(this.config.getUrl('download'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                path: this.cookie.get('filePath')
+            })
+        });
+    }
+
     toggleRename() {
         let btnShare = document.getElementById('share');
         let btnDownload = document.getElementById('download');
@@ -18,7 +60,7 @@ class DirHeadBtns extends React.Component {
             btnShare.style.display = 'none';
             btnDownload.style.display = 'none';
             input.style.display = 'block';
-            input.focus();
+            // input.focus();
 
             this.setState({
                 renameIcon: 'fa fa-check'
@@ -26,32 +68,75 @@ class DirHeadBtns extends React.Component {
 
             rename.style.backgroundColor = '#cccc00';
             rename.style.borderRadius = '';
-        } else {
-            btnShare.style.display = 'inline';
-            btnDownload.style.display = 'inline';
-            input.style.display = 'none';
 
-            this.setState({
-                renameIcon: 'fa fa-pencil'
+            let inputBox = document.getElementById('filefolderrename');
+
+            let path = this.cookie.get('exactPath');
+            let splitPath = path.split('/');
+            let fileName = splitPath[splitPath.length - 1];
+            inputBox.focus();
+            inputBox.value = fileName;
+        } else {
+            if (document.getElementById('filefolderrename').value === '') {
+                btnShare.style.display = 'inline';
+                btnDownload.style.display = 'inline';
+                input.style.display = 'none';
+
+                this.setState({
+                    renameIcon: 'fa fa-pencil'
+                });
+
+                rename.style.backgroundColor = '#FFF';
+                return false;
+            }
+
+            fetch(this.config.getUrl('rename'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: document.getElementById('filefolderrename').value,
+                    path: this.cookie.get('exactPath')
+                })
+            }).then((response) => {
+                return response.json();
+            }).then((responseJSON) => {
+                // console.log(responseJSON);
+                btnShare.style.display = 'inline';
+                btnDownload.style.display = 'inline';
+                input.style.display = 'none';
+
+                this.setState({
+                    renameIcon: 'fa fa-pencil'
+                });
+
+                rename.style.backgroundColor = '#FFF';
+                window.location.reload();
             });
 
-            rename.style.backgroundColor = '#FFF';
+
         }
     }
-    render() {
-        return (
-            <div style={dolphin.container}>
 
-                <span id="share" style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
-                <span id="download" style={dolphin.btn}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span>
-                <div id="input" style={dolphin.rename}>
-                    <input type="text" placeholder="Enter new filename" style={dolphin.input} />
-                </div>
-                <span id="rename" style={dolphin.btn} onClick={this.toggleRename.bind(this)}><i style={{ border: '1px solid #cccc00', borderRadius: '4px', padding: '6px' }} className={this.state.renameIcon} aria-hidden="true"></i></span>
-                <span id="delete" style={dolphin.btn}><i style={{ border: '1px solid #ff3333', borderRadius: '4px', padding: '6px' }} className="fa fa-trash" aria-hidden="true"></i></span>
+    delete() {
+        // console.log(this.cookie.get('exactPath'));
 
-            </div>
-        );
+        fetch(this.config.getUrl('delete'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                path: this.cookie.get('exactPath')
+            })
+        }).then((response) => {
+            return response.json();
+
+        }).then((responseJson) => {
+            // console.log(responseJson);
+            window.location.reload();
+        });
     }
 }
 
