@@ -24,7 +24,7 @@ class DirHeadBtns extends React.Component {
 
                 <span id="head-share" title='Share' style={dolphin.btn}><i style={{ border: '1px solid #3333ff', borderRadius: '4px', padding: '6px' }} className="fa fa-share-alt" aria-hidden="true"></i></span>
                 <a href={this.props.downloadPath} download><span id="head-download" title='Download' style={dolphin.btn}><i style={{ border: '1px solid #00cc00', borderRadius: '4px', padding: '6px' }} className="fa fa-download" aria-hidden="true"></i></span></a>
-                <div id="input" style={dolphin.rename}>
+                <div id="head-input" style={dolphin.rename}>
                     <input id="filefolderrename" type="text" onKeyDown={(e) => {
                         if (e.keyCode === 13) {
                             this.toggleRename();
