@@ -107,7 +107,9 @@ class DirHeadBtns extends React.Component {
     }
 
     delete() {
-        // console.log(this.cookie.get('exactPath'));
+        if (!window.confirm('Are you sure? you won\'t be able to revert this.')) {
+            return false;
+        }
 
         fetch(this.config.getUrl('delete'), {
             method: 'POST',
