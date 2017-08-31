@@ -75,7 +75,7 @@ const dolphin = {
         color: '#EEE',
         cursor: 'pointer',
         display: 'flex',
-        fontSize: '16px',
+        fontSize: '14px',
         height: '32px',
         justifyContent: 'center',
         marginTop: '24px',
