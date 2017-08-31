@@ -45,12 +45,12 @@ export default class DirBody extends Component {
 
                 display: 'none',
                 flexWrap: 'wrap',
-                padding: '20px 60px',
+                padding: '20px 97px',
             },
             filecontent: {
                 display: 'none',
                 flexWrap: 'wrap',
-                padding: '20px 60px'
+                padding: '20px 97px'
             },
             folderText: {
                 padding: '0px 30px',
