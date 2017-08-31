@@ -2,7 +2,7 @@
 
     padding: 0;
     margin:0;
-    font-family: 'Anonymous Pro';
+    font-family: 'century-gothic';
     user-select: none;
     
 }
@@ -31,4 +31,9 @@
     flex: 4;
     display:flex;
 
+}
+
+@font-face {
+    font-family: century-gothic;
+    src: url(./assets/century-gothic.woff);
 }
