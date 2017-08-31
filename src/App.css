@@ -9,7 +9,7 @@
 
 .container {
     align-items: center;
-    background: #dd8d77;
+    background: rgba(122,213,201,0.3);
     bottom: 0;
     display: flex;
     left: 0;
