@@ -160,7 +160,7 @@ class FolderCard extends Component {
             <div>
                 <div id={this.props.name} title={this.props.name} style={folderCard} onClick={this.onclickHandler.bind(this)} onDoubleClick={this.doubleClickHandler.bind(this)}>
                     <i className="fa fa-folder-o" style={{ fontSize: '16px', padding: '0px' }} aria-hidden="true"></i>
-                    <span style={{ paddingLeft: '8px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
+                    <span style={{ paddingLeft: '8px', fontSize: '14px' }}>{this.shortName !== null ? this.shortName : this.props.name}</span>
                 </div>
             </div>
         );
@@ -197,7 +197,7 @@ class FolderCard extends Component {
 
 
         this.cookie.set('fakePath', this.cookie.get('fakePath') + '/' + this.config.appendRandom(this.props.name));
-        this.props.onClick(this.cookie.get('path'), '','');
+        this.props.onClick(this.cookie.get('path'), '', '');
 
         this.props.openFolder();
     }
@@ -247,7 +247,7 @@ class FileCard extends Component {
             <div>
                 <div id={this.props.name} title={this.props.name} style={fileCard} onClick={this.clickHandler.bind(this)}>
                     <i className="fa fa-file-o" style={{ fontSize: '60px', paddingTop: '10px', color: 'rgba(0,0,0,0.6)' }} aria-hidden="true"></i>
-                    <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
+                    <p style={{ marginTop: '25px', color: 'rgba(0,0,0,0.8)', fontSize: '14px' }}>{this.shortName !== null ? this.shortName : this.props.name}</p>
                 </div>
             </div>
         );

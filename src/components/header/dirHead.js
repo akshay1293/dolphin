@@ -72,7 +72,7 @@ const dolphin = {
     },
     foldername: {
         color: 'rgba(0, 0, 0, 0.7)',
-        fontSize: '28px',
+        fontSize: '22px',
         fontWeight: 'bold',
         padding: '12px'
     },
