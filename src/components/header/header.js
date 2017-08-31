@@ -17,7 +17,7 @@ export default class Header extends Component {
         this.userData = this.cookie.get('dolphinUser');
         const style = {
             container: {
-                backgroundColor: '#7AD5C9',
+                backgroundColor: 'rgba(122,213,201,0.7)',
                 padding: '0 10px',
                 display: 'flex',
                 justifyContent: 'space-between',
