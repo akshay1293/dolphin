@@ -90,14 +90,14 @@ const dolphin = {
             alignItems: 'center',
             borderBottom: '2px solid #7AD5C9',
             display: 'flex',
-            flex: 1,
+            flex: 2,
             justifyContent: 'center',
             width: '100%'
         },
         body: {
             alignItems: 'center',
             display: 'flex',
-            flex: 4,
+            flex: 7,
             flexDirection: 'column'
         }
     },

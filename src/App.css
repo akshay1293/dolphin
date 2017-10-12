@@ -22,13 +22,13 @@
 
 .contentTop{
     display: flex;
-    flex: 1;
+    flex: 2;
     flex-direction: column;
 }
 
 .contentBottom{
 
-    flex: 4;
+    flex: 7;
     display:flex;
 
 }
