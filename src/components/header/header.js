@@ -50,7 +50,8 @@ export default class Header extends Component {
                 backgroundColor: '#F5F9F9',
                 border: '1px solid #34495E',
                 borderRadius: '16px 0px 16px 16px',
-                padding: '8px 20px',
+                // padding: '8px 20px',
+                padding: '24px 32px 10px 32px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -78,11 +79,12 @@ export default class Header extends Component {
                 letterSpacing: '1px',
             },
             button: {
+                marginTop: 16,
                 borderTop: '1px solid #CCC7C7',
                 width: '100%',
                 textAlign: 'center',
                 color: 'gray',
-                padding: '10px',
+                padding: '8px 0 0 0',
 
             },
             link: {
@@ -95,7 +97,7 @@ export default class Header extends Component {
         return (
 
             <div style={style.container}>
-                <div style={{ fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>Dashboard</p></div>
+                <div style={{ fontSize: '18px', paddingLeft: '10px', color: 'rgba(0,0,0,0.7)' }}><p>DASH BOARD</p></div>
                 <div style={style.profile} onClick={this.togglePopup.bind(this)}>
                     <i className="fa fa-bars" style={{ color: 'rgba(0,0,0,0.7)', fontSize: '16px', paddingRight: '10px', cursor: 'pointer' }}></i>
                 </div>
@@ -108,7 +110,7 @@ export default class Header extends Component {
                             <p>{this.userData === undefined ? '' : this.userData.ig} </p>
                         </div>
                         <div style={style.button}>
-                            <a href="#root" style={style.link} onClick={this.props.onClick}>SignOut</a>
+                            <a href="#root" style={style.link} onClick={this.props.onClick}>Sign Out</a>
                         </div>
                     </div>
                 </div>
